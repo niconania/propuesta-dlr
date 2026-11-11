@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Boceto navegable · DLR Tecnología y Hogar</title>
+<link rel="icon" href="data:,">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #1A1C21; color: #F3F4F6; display: flex; flex-direction: column; }
+  button { font: inherit; cursor: pointer; border: 0; }
+  .barra { flex: none; display: flex; align-items: center; gap: 14px; padding: 10px 16px; background: #111317; border-bottom: 1px solid #2A2D34; }
+  .marca { display: flex; flex-direction: column; line-height: 1.25; margin-right: auto; min-width: 0; }
+  .marca b { font-size: 14px; white-space: nowrap; }
+  .marca span { font-size: 12px; color: #9AA0AA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .seg { display: flex; background: #23262D; border-radius: 999px; padding: 3px; }
+  .seg button { background: none; color: #B8BDC6; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; }
+  .seg button.activo { background: #F3F4F6; color: #111317; }
+  .interruptor { display: flex; align-items: center; gap: 8px; background: #23262D; color: #DDE1E7; font-size: 13px; font-weight: 600; padding: 7px 14px 7px 8px; border-radius: 999px; }
+  .interruptor i { width: 30px; height: 18px; border-radius: 999px; background: #3A3E47; position: relative; transition: background .15s; }
+  .interruptor i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 999px; background: #fff; transition: left .15s; }
+  .interruptor.on i { background: #1F5EFF; }
+  .interruptor.on i::after { left: 14px; }
+  .toques { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #B8BDC6; background: #23262D; padding: 7px 12px; border-radius: 999px; white-space: nowrap; }
+  .toques b { color: #fff; font-size: 15px; min-width: 18px; text-align: center; }
+  .toques.listo { background: #173A27; color: #9BE3B8; }
+  .reiniciar { background: none; color: #9AA0AA; font-size: 13px; text-decoration: underline; padding: 4px; }
+  .escena { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 0%, #2B2F38 0%, #1A1C21 70%); overflow: hidden; }
+  .escena iframe { border: 0; width: 100%; height: 100%; background: #F4F5F7; display: block; }
+  .escena.celular { padding: 18px 0; }
+  .telefono { width: 100%; height: 100%; }
+  .escena.celular .telefono { width: 402px; height: min(860px, 100%); border-radius: 46px; padding: 44px 12px 14px; background: #0B0C0F; box-shadow: 0 0 0 2px #3A3E47, 0 30px 80px rgba(0,0,0,.55); position: relative; }
+  .escena.celular .telefono iframe { border-radius: 6px 6px 34px 34px; }
+  .escena.celular .telefono::before { content: ""; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 92px; height: 22px; border-radius: 999px; background: #000; box-shadow: inset 0 0 0 1px #24262C; z-index: 2; }
+  .escena.celular .telefono iframe { padding-top: 0; }
+  .leyenda { position: absolute; left: 18px; bottom: 16px; max-width: 280px; font-size: 12.5px; line-height: 1.45; color: #9AA0AA; display: none; }
+  .escena.celular .leyenda { display: block; }
+  .leyenda b { color: #E5E7EB; display: block; margin-bottom: 4px; font-size: 13px; }
+  @media (max-width: 760px) {
+    .barra { flex-wrap: wrap; gap: 8px; padding: 8px 10px; }
+    .marca { flex-basis: 100%; }
+    .seg { display: none; }
+    .escena.celular { padding: 0; }
+    .escena.celular .telefono { width: 100%; height: 100%; border-radius: 0; padding: 0; box-shadow: none; }
+    .escena.celular .telefono::before { display: none; }
+    .escena.celular .telefono iframe { border-radius: 0; }
+    .leyenda { display: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="barra">
+    <div class="marca"><b>Boceto navegable · DLR Tecnología y Hogar</b><span>Wireframe de propuesta: productos, precios y textos de ejemplo. No envía nada.</span></div>
+    <div class="seg" role="group" aria-label="Dispositivo">
+      <button data-disp="pc" class="activo">Computadora</button>
+      <button data-disp="cel">Celular</button>
+    </div>
+    <button class="interruptor" id="notas" aria-pressed="false"><i></i>Notas de diseño</button>
+    <div class="toques" id="toques" title="Cada clic o toque cuenta, desde que entras hasta que confirmas el pedido">Toques hasta el pedido: <b id="n">0</b></div>
+    <button class="reiniciar" id="reiniciar">Reiniciar</button>
+  </div>
+  <div class="escena" id="escena">
+    <div class="telefono"><iframe id="app" src="tienda.html" title="Boceto de la tienda DLR"></iframe></div>
+    <div class="leyenda"><b>Pensado primero para el celular</b>Buscador arriba, filtros que se deslizan, ficha que sube desde abajo y el botón de confirmar fijo con el total.</div>
+  </div>
+<script>
+  var app = document.getElementById('app');
+  var notas = false;
+  function enviar(m) { m.boceto = 'dlr-marco'; app.contentWindow.postMessage(m, '*'); }
+  document.querySelectorAll('[data-disp]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-disp]').forEach(function (x) { x.classList.toggle('activo', x === b); });
+      document.getElementById('escena').classList.toggle('celular', b.dataset.disp === 'cel');
+    });
+  });
+  document.getElementById('notas').addEventListener('click', function () {
+    notas = !notas;
+    this.classList.toggle('on', notas);
+    this.setAttribute('aria-pressed', notas);
+    enviar({ notas: notas });
+  });
+  document.getElementById('reiniciar').addEventListener('click', function () {
+    enviar({ reiniciar: true });
+    document.getElementById('toques').classList.remove('listo');
+  });
+  window.addEventListener('message', function (e) {
+    var d = e.data || {};
+    if (d.boceto !== 'dlr') return;
+    document.getElementById('n').textContent = d.n;
+    var t = document.getElementById('toques');
+    if (d.tipo === 'pedido') { t.classList.add('listo'); t.firstChild.textContent = 'Pedido listo en: '; }
+    else if (d.n === 0) { t.classList.remove('listo'); t.firstChild.textContent = 'Toques hasta el pedido: '; }
+  });
+  app.addEventListener('load', function () { if (notas) enviar({ notas: true }); });
+  if (/[?&]disp=cel/.test(location.search)) document.querySelector('[data-disp="cel"]').click();
+  if (/[?&]notas=1/.test(location.search)) document.getElementById('notas').click();
+</script>
+</body>
+</html>

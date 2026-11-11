@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Boceto · DLR Tecnología y Hogar</title>
+<link rel="icon" href="data:,">
+<style>
+  :root {
+    --fondo: #F4F5F7; --sup: #FFFFFF; --linea: #E2E5EA; --texto: #14161A; --suave: #545B68; --tenue: #8B919C;
+    --acento: #1F5EFF; --acento-hover: #1849D6; --acento-suave: #E9EFFF;
+    --oferta: #E5484D; --ok: #1E9A57; --alerta: #C97A0A; --ph: #EEF0F3; --ph-trazo: #A0A6B1;
+    --radio: 14px; --sombra: 0 1px 2px rgba(20,22,26,.06), 0 6px 18px rgba(20,22,26,.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--fondo); color: var(--texto); font-size: 15px; line-height: 1.45; }
+  button, input, select { font: inherit; color: inherit; }
+  button { cursor: pointer; border: 0; background: none; }
+  a { color: inherit; text-decoration: none; }
+  .envoltura { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+  /* ── Cabecera ── */
+  .cabecera { position: sticky; top: 0; z-index: 30; background: var(--sup); border-bottom: 1px solid var(--linea); }
+  .cab-fila { display: flex; align-items: center; gap: 24px; height: 72px; }
+  .logo { display: flex; align-items: baseline; gap: 8px; flex: none; }
+  .logo b { font-size: 26px; letter-spacing: .04em; font-weight: 800; }
+  .logo span { font-size: 12px; color: var(--suave); letter-spacing: .02em; }
+  .buscador { position: relative; flex: 1; max-width: 620px; }
+  .buscador input { width: 100%; height: 46px; border: 1.5px solid var(--linea); border-radius: 999px; padding: 0 18px 0 46px; background: var(--fondo); outline: none; transition: border-color .15s, background .15s; }
+  .buscador input:focus { border-color: var(--acento); background: var(--sup); }
+  .buscador svg.lupa { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: var(--tenue); }
+  .sugerencias { position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: var(--sup); border: 1px solid var(--linea); border-radius: 16px; box-shadow: var(--sombra); padding: 8px; display: none; }
+  .sugerencias.abierta { display: block; }
+  .sug-item { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 10px; }
+  .sug-item:hover { background: var(--fondo); }
+  .sug-item .mini { width: 44px; height: 44px; flex: none; }
+  .sug-texto { flex: 1; min-width: 0; cursor: pointer; }
+  .sug-texto b { display: block; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sug-texto span { font-size: 13px; color: var(--suave); }
+  .sug-ver { display: block; text-align: center; padding: 10px; font-size: 14px; font-weight: 600; color: var(--acento); border-top: 1px solid var(--linea); margin-top: 6px; width: 100%; }
+  .sug-vacio { padding: 14px 12px; font-size: 14px; color: var(--suave); }
+  .sug-vacio button { color: var(--acento); font-weight: 600; text-decoration: underline; padding: 0 2px; }
+  .btn-carrito { margin-left: auto; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 18px; border-radius: 999px; background: var(--texto); color: #fff; font-weight: 600; flex: none; }
+  .btn-carrito svg { width: 20px; height: 20px; stroke: #fff; }
+  .btn-carrito .cuenta { min-width: 22px; height: 22px; border-radius: 999px; background: var(--acento); font-size: 12px; display: inline-flex; align-items: center; justify-content: center; padding: 0 6px; }
+  .btn-carrito.salta { animation: salta .45s ease; }
+  @keyframes salta { 30% { transform: scale(1.08); } 60% { transform: scale(.97); } }
+  .menu-cats { display: flex; gap: 6px; padding: 0 0 12px; overflow-x: auto; scrollbar-width: none; }
+  .menu-cats::-webkit-scrollbar { display: none; }
+  .menu-cats button { flex: none; height: 34px; padding: 0 14px; border-radius: 999px; font-size: 14px; color: var(--suave); font-weight: 500; }
+  .menu-cats button:hover { background: var(--fondo); color: var(--texto); }
+  .menu-cats button.activa { background: var(--acento-suave); color: var(--acento); font-weight: 600; }
+  .menu-cats .sep { width: 1px; background: var(--linea); margin: 6px 6px; flex: none; }
+  .menu-cats .grupo { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--tenue); align-self: center; padding: 0 4px 0 8px; flex: none; }
+
+  /* ── Placeholders de imagen ── */
+  .ph { background: var(--ph); border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .ph svg { width: 46%; height: 46%; stroke: var(--ph-trazo); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .mini.ph svg { width: 62%; height: 62%; }
+
+  main { padding: 28px 0 80px; min-height: 70vh; }
+
+  /* ── Inicio ── */
+  .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 0; background: linear-gradient(120deg, #E9EFFF 0%, #F6F8FF 60%, #FFFFFF 100%); border: 1px solid var(--linea); border-radius: 22px; overflow: hidden; }
+  .hero-texto { padding: 44px 48px; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .hero-texto small { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--acento); }
+  .hero-texto h1 { font-size: 40px; line-height: 1.08; letter-spacing: -.02em; }
+  .hero-texto p { color: var(--suave); max-width: 420px; }
+  .hero-iconos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 28px 32px; align-content: center; }
+  .hero-iconos .ph { aspect-ratio: 1; background: rgba(255,255,255,.7); }
+  .btn { height: 46px; padding: 0 22px; border-radius: 999px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: background .15s, color .15s, border-color .15s, transform .1s; }
+  .btn:active { transform: scale(.98); }
+  .btn-primario { background: var(--acento); color: #fff; }
+  .btn-primario:hover { background: var(--acento-hover); }
+  .btn-borde { border: 1.5px solid var(--texto); }
+  .btn-borde:hover { background: var(--texto); color: #fff; }
+  .hero-texto .btn { align-self: flex-start; margin-top: 6px; }
+  .titulo-seccion { display: flex; align-items: baseline; justify-content: space-between; margin: 40px 0 16px; }
+  .titulo-seccion h2 { font-size: 22px; letter-spacing: -.01em; }
+  .titulo-seccion button { color: var(--acento); font-weight: 600; font-size: 14px; }
+  .cats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .cat { background: var(--sup); border: 1px solid var(--linea); border-radius: var(--radio); padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 12px; transition: border-color .15s, box-shadow .15s; }
+  .cat:hover { border-color: var(--acento); box-shadow: var(--sombra); }
+  .cat .ph { aspect-ratio: 1.3; }
+  .cat b { font-size: 15px; }
+  .cat span { font-size: 13px; color: var(--tenue); margin-top: -10px; }
+  .confianza { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; }
+  .confianza div { background: var(--sup); border: 1px solid var(--linea); border-radius: var(--radio); padding: 18px 20px; display: flex; gap: 14px; align-items: center; }
+  .confianza svg { width: 28px; height: 28px; stroke: var(--acento); fill: none; stroke-width: 1.7; flex: none; }
+  .confianza b { display: block; font-size: 15px; }
+  .confianza span { font-size: 13px; color: var(--suave); }
+
+  /* ── Catálogo ── */
+  .migas { font-size: 13px; color: var(--tenue); margin-bottom: 6px; }
+  .migas button { color: var(--suave); text-decoration: underline; }
+  .cat-cabecera { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+  .cat-cabecera h1 { font-size: 30px; letter-spacing: -.02em; }
+  .cat-cabecera p { color: var(--suave); font-size: 14px; }
+  .ordenar { height: 40px; border: 1.5px solid var(--linea); border-radius: 999px; padding: 0 14px; background: var(--sup); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .chip { height: 36px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--linea); background: var(--sup); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: all .15s; }
+  .chip:hover { border-color: var(--texto); }
+  .chip.activo { background: var(--texto); border-color: var(--texto); color: #fff; }
+  .chip .n { font-size: 12px; opacity: .6; }
+  .grilla { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tarjeta { background: var(--sup); border: 1px solid var(--linea); border-radius: var(--radio); padding: 12px; display: flex; flex-direction: column; gap: 10px; transition: box-shadow .15s, border-color .15s; }
+  .tarjeta:hover { box-shadow: var(--sombra); }
+  .tarjeta .ph { aspect-ratio: 1; cursor: pointer; }
+  .insignias { position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; flex-direction: column; align-items: flex-start; }
+  .insignia { font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: var(--oferta); color: #fff; }
+  .insignia.stock { background: #FFF1DB; color: var(--alerta); }
+  .insignia.agotado { background: var(--texto); color: #fff; }
+  .t-nombre { font-weight: 600; font-size: 15px; line-height: 1.3; min-height: 2.6em; cursor: pointer; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .t-spec { font-size: 13px; color: var(--tenue); margin-top: -6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .precio { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .precio b { font-size: 20px; letter-spacing: -.01em; }
+  .precio b.rebajado { color: var(--oferta); }
+  .precio s { font-size: 14px; color: var(--tenue); }
+  .bs { font-size: 12px; color: var(--tenue); margin-top: -6px; }
+  .accion { margin-top: auto; }
+  .accion .btn { width: 100%; height: 42px; }
+  .stepper { display: flex; align-items: center; justify-content: space-between; height: 42px; border-radius: 999px; background: var(--acento-suave); color: var(--acento); font-weight: 700; }
+  .stepper button { width: 42px; height: 42px; border-radius: 999px; font-size: 20px; color: var(--acento); }
+  .stepper button:hover { background: rgba(31,94,255,.12); }
+  .stepper.chico { height: 34px; width: 112px; }
+  .stepper.chico button { width: 34px; height: 34px; font-size: 18px; }
+  .vacio { grid-column: 1 / -1; background: var(--sup); border: 1px dashed var(--linea); border-radius: var(--radio); padding: 40px; text-align: center; color: var(--suave); }
+  .vacio b { display: block; color: var(--texto); font-size: 17px; margin-bottom: 6px; }
+  .vacio .btn { margin-top: 14px; }
+
+  /* ── Ficha ── */
+  .velo { position: fixed; inset: 0; background: rgba(20,22,26,.42); z-index: 40; opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .velo.abierto { opacity: 1; pointer-events: auto; }
+  .ficha { position: fixed; z-index: 50; left: 50%; top: 50%; width: min(940px, calc(100% - 48px)); max-height: calc(100% - 48px); overflow: auto; transform: translate(-50%, -46%); opacity: 0; pointer-events: none; background: var(--sup); border-radius: 22px; transition: opacity .2s, transform .2s; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 28px; }
+  .ficha.abierta { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%); }
+  .cerrar { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 999px; background: var(--fondo); font-size: 22px; line-height: 1; z-index: 2; }
+  .ficha-galeria .ph { aspect-ratio: 1; }
+  .miniaturas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; }
+  .miniaturas .ph { aspect-ratio: 1; border-radius: 8px; }
+  .miniaturas .ph:first-child { outline: 2px solid var(--acento); }
+  .ficha-info { display: flex; flex-direction: column; gap: 14px; padding-right: 30px; }
+  .ficha-info h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; }
+  .ficha-info .precio b { font-size: 30px; }
+  .disponible { display: flex; flex-direction: column; gap: 8px; background: var(--fondo); border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+  .disponible div { display: flex; gap: 8px; align-items: center; }
+  .disponible i { width: 8px; height: 8px; border-radius: 999px; background: var(--ok); flex: none; }
+  .disponible i.poco { background: var(--alerta); }
+  .specs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .specs span { font-size: 13px; padding: 6px 10px; border-radius: 8px; background: var(--fondo); color: var(--suave); }
+  .ficha-botones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center; }
+  .ficha-botones .btn { white-space: nowrap; padding: 0 14px; }
+  .cantidad { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--suave); }
+
+  /* ── Carrito ── */
+  .carrito { position: fixed; z-index: 50; top: 0; right: 0; bottom: 0; width: min(420px, 100%); background: var(--sup); transform: translateX(102%); transition: transform .25s ease; display: flex; flex-direction: column; box-shadow: -8px 0 30px rgba(20,22,26,.12); }
+  .carrito.abierto { transform: none; }
+  .car-cab { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; border-bottom: 1px solid var(--linea); }
+  .car-cab h2 { font-size: 19px; }
+  .car-cab .cerrar { position: static; }
+  .car-items { flex: 1; overflow: auto; padding: 8px 22px; }
+  .car-item { display: grid; grid-template-columns: 64px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--linea); }
+  .car-item .ph { width: 64px; height: 64px; }
+  .car-item b { font-size: 14px; font-weight: 600; display: block; line-height: 1.3; }
+  .car-fila { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+  .quitar { font-size: 13px; color: var(--tenue); text-decoration: underline; }
+  .car-pie { padding: 18px 22px 22px; border-top: 1px solid var(--linea); display: flex; flex-direction: column; gap: 12px; }
+  .total { display: flex; justify-content: space-between; align-items: baseline; }
+  .total b { font-size: 22px; }
+  .car-pie .btn { width: 100%; height: 50px; font-size: 16px; }
+  .car-pie .seguir { font-size: 14px; color: var(--suave); text-decoration: underline; align-self: center; }
+  .car-vacio { padding: 40px 10px; text-align: center; color: var(--suave); }
+
+  /* ── Pago ── */
+  .pago { display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; align-items: start; }
+  .pago h1 { font-size: 30px; letter-spacing: -.02em; margin-bottom: 4px; }
+  .pago-sub { color: var(--suave); margin-bottom: 20px; font-size: 14px; }
+  .bloque { background: var(--sup); border: 1px solid var(--linea); border-radius: 18px; padding: 22px; margin-bottom: 16px; }
+  .bloque h3 { font-size: 16px; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .bloque h3 span { width: 24px; height: 24px; border-radius: 999px; background: var(--acento-suave); color: var(--acento); font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+  .campos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .campo label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .campo input, .campo select { width: 100%; height: 46px; border: 1.5px solid var(--linea); border-radius: 12px; padding: 0 14px; background: var(--sup); outline: none; }
+  .campo input:focus, .campo select:focus { border-color: var(--acento); }
+  .campo.error input { border-color: var(--oferta); }
+  .campo .msj { font-size: 12px; color: var(--oferta); margin-top: 5px; display: none; }
+  .campo.error .msj { display: block; }
+  .campo.ancho { grid-column: 1 / -1; }
+  .opciones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .opciones.cuatro { grid-template-columns: repeat(4, 1fr); }
+  .opcion { border: 1.5px solid var(--linea); border-radius: 14px; padding: 14px; text-align: left; display: flex; flex-direction: column; gap: 3px; transition: border-color .15s, background .15s; }
+  .opcion:hover { border-color: var(--texto); }
+  .opcion b { font-size: 14px; }
+  .opcion span { font-size: 12.5px; color: var(--suave); }
+  .opcion.activa { border-color: var(--acento); background: var(--acento-suave); }
+  .bloque.error-pago .opciones { outline: 2px solid var(--oferta); outline-offset: 6px; border-radius: 14px; }
+  .resumen { position: sticky; top: 140px; }
+  .res-item { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; padding: 8px 0; border-bottom: 1px solid var(--linea); }
+  .res-item span { color: var(--suave); }
+  .res-total { display: flex; justify-content: space-between; align-items: baseline; margin: 14px 0 4px; }
+  .res-total b { font-size: 24px; }
+  .resumen .btn { width: 100%; height: 52px; font-size: 16px; margin-top: 16px; }
+  .letra-chica { font-size: 12.5px; color: var(--tenue); text-align: center; margin-top: 10px; }
+
+  /* ── Confirmación ── */
+  .listo { max-width: 620px; margin: 10px auto; background: var(--sup); border: 1px solid var(--linea); border-radius: 24px; padding: 40px; text-align: center; }
+  .listo .check { width: 64px; height: 64px; border-radius: 999px; background: #E3F6EC; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .listo .check svg { width: 30px; height: 30px; stroke: var(--ok); fill: none; stroke-width: 2.6; }
+  .listo h1 { font-size: 28px; letter-spacing: -.02em; }
+  .listo p { color: var(--suave); margin-top: 8px; }
+  .toques-final { display: inline-flex; align-items: center; gap: 10px; margin: 22px 0 6px; padding: 12px 18px; border-radius: 14px; background: var(--acento-suave); color: var(--acento); font-weight: 700; }
+  .toques-final b { font-size: 26px; }
+  .listo .res-item { text-align: left; }
+  .listo .btn { margin-top: 22px; }
+
+  /* ── Notas de diseño ── */
+  .con-notas [data-nota] { outline: 2px dashed rgba(31,94,255,.55); outline-offset: 3px; position: relative; }
+  .con-notas [data-nota]::after { content: attr(data-n); position: absolute; top: -12px; right: -10px; z-index: 6; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 999px; background: var(--acento); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(31,94,255,.45); pointer-events: none; }
+  .con-notas .hero[data-nota]::after { top: 12px; right: 12px; }
+  @media (min-width: 701px) { .con-notas .resumen[data-nota] { position: sticky; } }
+  .globo { position: fixed; z-index: 90; max-width: 300px; background: var(--texto); color: #fff; border-radius: 12px; padding: 12px 14px; font-size: 13.5px; line-height: 1.45; box-shadow: 0 10px 30px rgba(0,0,0,.25); display: none; }
+  .globo b { color: #9DB6FF; display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 4px; }
+  .globo.visible { display: block; }
+
+  .aviso { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px); background: var(--texto); color: #fff; padding: 12px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; opacity: 0; transition: all .2s; z-index: 80; pointer-events: none; white-space: nowrap; }
+  .aviso.visible { opacity: 1; transform: translateX(-50%); }
+
+  .pie { border-top: 1px solid var(--linea); background: var(--sup); padding: 26px 0; font-size: 13px; color: var(--tenue); }
+
+  /* ── Celular ── */
+  @media (max-width: 900px) {
+    .grilla { grid-template-columns: repeat(3, 1fr); }
+    .cats { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    body { font-size: 14px; }
+    .envoltura { padding: 0 14px; }
+    .cab-fila { height: auto; flex-wrap: wrap; gap: 10px; padding: 12px 0 10px; }
+    .logo b { font-size: 22px; }
+    .buscador { order: 3; flex-basis: 100%; max-width: none; }
+    .buscador input { height: 44px; }
+    .btn-carrito { height: 40px; padding: 0 12px; gap: 8px; }
+    .btn-carrito .txt { display: none; }
+    .menu-cats { padding-bottom: 10px; }
+    .menu-cats .grupo, .menu-cats .sep { display: none; }
+    main { padding: 16px 0 110px; }
+    .hero { grid-template-columns: 1fr; border-radius: 18px; }
+    .hero-texto { padding: 26px 22px 8px; gap: 10px; }
+    .hero-texto h1 { font-size: 27px; }
+    .hero-iconos { grid-template-columns: repeat(3, 1fr); padding: 14px 22px 24px; gap: 10px; }
+    .titulo-seccion { margin: 28px 0 12px; }
+    .titulo-seccion h2 { font-size: 19px; }
+    .cats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .cat { padding: 10px; gap: 8px; }
+    .cat b { font-size: 13px; }
+    .cat span { display: none; }
+    .confianza { grid-template-columns: 1fr; gap: 10px; margin-top: 28px; }
+    .grilla { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .tarjeta { padding: 9px; gap: 8px; }
+    .t-nombre { font-size: 14px; }
+    .precio b { font-size: 17px; }
+    .accion .btn, .stepper { height: 38px; }
+    .stepper button { width: 38px; height: 38px; }
+    .cat-cabecera h1 { font-size: 24px; }
+    .cat-cabecera { flex-wrap: wrap; }
+    .chips { flex-wrap: nowrap; overflow-x: auto; margin: 0 -14px 16px; padding: 2px 14px; scrollbar-width: none; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex: none; }
+    .ficha { left: 0; right: 0; top: auto; bottom: 0; width: 100%; max-height: 92%; transform: translateY(100%); border-radius: 22px 22px 0 0; grid-template-columns: 1fr; gap: 16px; padding: 18px 16px 0; }
+    .ficha.abierta { transform: none; }
+    .ficha-galeria .ph { aspect-ratio: 1.25; }
+    .ficha-info { padding-right: 0; gap: 12px; }
+    .ficha-info h2 { font-size: 21px; }
+    .ficha-botones { position: sticky; bottom: 0; background: var(--sup); padding: 12px 0 16px; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--linea); }
+    .ficha-botones .stepper { display: none; }
+    .pago { grid-template-columns: 1fr; }
+    .pago h1 { font-size: 24px; }
+    .campos, .opciones, .opciones.cuatro { grid-template-columns: 1fr 1fr; }
+    .campo { grid-column: 1 / -1; }
+    .resumen { position: static; }
+    .resumen .btn { position: fixed; left: 14px; right: 14px; bottom: 14px; width: auto; z-index: 35; box-shadow: 0 8px 24px rgba(31,94,255,.35); }
+    .listo { padding: 28px 18px; }
+    .aviso { bottom: 84px; }
+  }
+</style>
+</head>
+<body>
+  <header class="cabecera">
+    <div class="envoltura">
+      <div class="cab-fila">
+        <button class="logo" data-ir="inicio" aria-label="Inicio"><b>DLR</b><span>Tecnología y Hogar</span></button>
+        <div class="buscador" data-nota="Buscador siempre visible, con resultados mientras se escribe. Desde la sugerencia se agrega al carrito sin abrir la ficha. Estados diseñados: escribiendo, con resultados y sin resultados.">
+          <svg class="lupa" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Busca TV, neveras, laptops…" autocomplete="off" aria-label="Buscar productos">
+          <div class="sugerencias" id="sug" role="listbox"></div>
+        </div>
+        <button class="btn-carrito" id="abrirCarrito" data-nota="El carrito siempre muestra cuántos productos y cuánto va. Se abre al costado: el cliente revisa sin salir de lo que estaba viendo.">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h11.2L21 8H7"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+          <span class="txt" id="totalCab">$0</span><span class="cuenta" id="cuenta">0</span>
+        </button>
+      </div>
+      <nav class="menu-cats" id="menu"></nav>
+    </div>
+  </header>
+
+  <main><div class="envoltura" id="vista"></div></main>
+  <footer class="pie"><div class="envoltura">Boceto de interfaz para DLR · productos, precios y textos de ejemplo · Bs a tasa de ejemplo de 900 Bs/USD</div></footer>
+
+  <div class="velo" id="velo"></div>
+  <section class="ficha" id="ficha" aria-modal="true" role="dialog"></section>
+  <aside class="carrito" id="carrito" aria-label="Carrito"></aside>
+  <div class="globo" id="globo"></div>
+  <div class="aviso" id="aviso"></div>
+
+<script>
+/* ═══════════ Íconos (placeholders de foto) ═══════════ */
+const IC = {
+  celular: '<rect x="15" y="5" width="18" height="38" rx="4"/><path d="M21 9h6M22 38h4"/>',
+  laptop: '<rect x="9" y="10" width="30" height="20" rx="2"/><path d="M4 36h40l-3 4H7z"/>',
+  tv: '<rect x="5" y="9" width="38" height="24" rx="2"/><path d="M18 40h12M24 33v7"/>',
+  audio: '<rect x="4" y="19" width="40" height="11" rx="5"/><circle cx="12" cy="24.5" r="2"/><circle cx="36" cy="24.5" r="2"/><path d="M20 24.5h8"/>',
+  audifonos: '<path d="M9 30v-6a15 15 0 0 1 30 0v6"/><rect x="6" y="28" width="8" height="12" rx="3"/><rect x="34" y="28" width="8" height="12" rx="3"/>',
+  nevera: '<rect x="12" y="4" width="24" height="40" rx="3"/><path d="M12 19h24M17 9v6M17 24v8"/>',
+  lavadora: '<rect x="8" y="5" width="32" height="38" rx="3"/><circle cx="24" cy="27" r="9"/><path d="M8 13h32M13 9h4"/>',
+  licuadora: '<path d="M15 6h18l-3 22H18z"/><rect x="14" y="28" width="20" height="13" rx="3"/><path d="M22 34h4"/>',
+  microondas: '<rect x="4" y="11" width="40" height="26" rx="3"/><rect x="9" y="16" width="22" height="16" rx="1.5"/><path d="M37 17v1M37 23v1M37 29v1"/>',
+  freidora: '<path d="M10 16a14 14 0 0 1 28 0v22a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4z"/><path d="M15 26h18M20 30h8"/>',
+  cafetera: '<path d="M14 10h20v5H14z"/><path d="M16 15l2 16h12l2-16"/><rect x="12" y="31" width="24" height="10" rx="2"/>',
+  aire: '<rect x="4" y="12" width="40" height="15" rx="3"/><path d="M10 31c0 3-2 4-2 6M18 31c0 3-2 4-2 6M26 31c0 3-2 4-2 6M34 31c0 3-2 4-2 6M9 22h30"/>',
+  ventilador: '<circle cx="24" cy="18" r="13"/><circle cx="24" cy="18" r="2.5"/><path d="M24 15.5c0-5 2-8 5-8M26.5 19c4 2 6 5 4 7.5M21.5 19c-4 2-7 1-8-2M24 31v10M17 43h14"/>'
+};
+const ico = (k) => '<svg viewBox="0 0 48 48">' + (IC[k] || IC.tv) + '</svg>';
+
+/* ═══════════ Catálogo de ejemplo ═══════════ */
+const CATS = [
+  { id: 'celulares', nombre: 'Celulares', grupo: 'Tecnología', icono: 'celular' },
+  { id: 'laptops', nombre: 'Laptops', grupo: 'Tecnología', icono: 'laptop' },
+  { id: 'tv-audio', nombre: 'TV y audio', grupo: 'Tecnología', icono: 'tv' },
+  { id: 'linea-blanca', nombre: 'Línea blanca', grupo: 'Hogar', icono: 'nevera' },
+  { id: 'cocina', nombre: 'Cocina', grupo: 'Hogar', icono: 'licuadora' },
+  { id: 'clima', nombre: 'Climatización', grupo: 'Hogar', icono: 'aire' }
+];
+const P = [
+  { id: 1, cat: 'tv-audio', nombre: 'Smart TV 50" 4K UHD', spec: '50" · 4K · 3 HDMI · Wi-Fi', precio: 379, antes: 429, stock: 6, icono: 'tv', specs: ['Pantalla 50"', 'Resolución 4K', '3 HDMI · 2 USB', 'Wi-Fi y Bluetooth'] },
+  { id: 2, cat: 'tv-audio', nombre: 'Smart TV 32" HD', spec: '32" · HD · 2 HDMI', precio: 189, stock: 14, icono: 'tv', specs: ['Pantalla 32"', 'Resolución HD', '2 HDMI · 1 USB', 'Wi-Fi'] },
+  { id: 3, cat: 'tv-audio', nombre: 'Barra de sonido 2.1 con subwoofer', spec: '160 W · Bluetooth · HDMI ARC', precio: 119, stock: 9, icono: 'audio', specs: ['160 W', 'Subwoofer inalámbrico', 'HDMI ARC', 'Bluetooth'] },
+  { id: 4, cat: 'tv-audio', nombre: 'Audífonos inalámbricos con cancelación de ruido', spec: 'Bluetooth 5.3 · 30 h de batería', precio: 39, stock: 25, icono: 'audifonos', specs: ['Bluetooth 5.3', '30 h de batería', 'Cancelación de ruido', 'Carga USB-C'] },
+  { id: 5, cat: 'celulares', nombre: 'Celular 6,7" 256 GB', spec: '256 GB · 8 GB RAM · 50 MP', precio: 289, antes: 329, stock: 2, icono: 'celular', specs: ['Pantalla 6,7"', '256 GB', '8 GB RAM', 'Cámara 50 MP'] },
+  { id: 6, cat: 'celulares', nombre: 'Celular 6,1" 128 GB', spec: '128 GB · 4 GB RAM · 48 MP', precio: 179, stock: 11, icono: 'celular', specs: ['Pantalla 6,1"', '128 GB', '4 GB RAM', 'Cámara 48 MP'] },
+  { id: 7, cat: 'laptops', nombre: 'Laptop 15,6" Ryzen 5 · 16 GB', spec: '512 GB SSD · Full HD', precio: 549, stock: 4, icono: 'laptop', specs: ['Ryzen 5', '16 GB RAM', '512 GB SSD', 'Pantalla Full HD'] },
+  { id: 8, cat: 'laptops', nombre: 'Laptop 14" Core i5 · 8 GB', spec: '256 GB SSD · 1,4 kg', precio: 459, antes: 499, stock: 7, icono: 'laptop', specs: ['Core i5', '8 GB RAM', '256 GB SSD', '1,4 kg'] },
+  { id: 9, cat: 'linea-blanca', nombre: 'Nevera 14 pies No Frost', spec: '14 p³ · No Frost · dispensador', precio: 699, stock: 3, icono: 'nevera', specs: ['14 pies cúbicos', 'No Frost', 'Dispensador de agua', 'Bajo consumo'] },
+  { id: 10, cat: 'linea-blanca', nombre: 'Lavadora automática 17 kg', spec: '17 kg · 12 programas', precio: 499, antes: 559, stock: 5, icono: 'lavadora', specs: ['Carga 17 kg', '12 programas', 'Carga superior', 'Bajo consumo'] },
+  { id: 11, cat: 'cocina', nombre: 'Freidora de aire 5 L', spec: '5 L · 1.500 W · digital', precio: 89, antes: 109, stock: 18, icono: 'freidora', specs: ['5 litros', '1.500 W', 'Panel digital', '8 programas'] },
+  { id: 12, cat: 'cocina', nombre: 'Licuadora 1,5 L 600 W', spec: '1,5 L · 600 W · vaso de vidrio', precio: 49, stock: 22, icono: 'licuadora', specs: ['Vaso 1,5 L', '600 W', '5 velocidades', 'Vaso de vidrio'] },
+  { id: 13, cat: 'cocina', nombre: 'Microondas 0,7 p³', spec: '0,7 p³ · 700 W · 10 niveles', precio: 109, stock: 8, icono: 'microondas', specs: ['0,7 pies cúbicos', '700 W', '10 niveles', 'Descongelado rápido'] },
+  { id: 14, cat: 'cocina', nombre: 'Cafetera de goteo 12 tazas', spec: '12 tazas · programable', precio: 39, stock: 16, icono: 'cafetera', specs: ['12 tazas', 'Programable', 'Jarra de vidrio', 'Antigoteo'] },
+  { id: 15, cat: 'clima', nombre: 'Aire acondicionado 12.000 BTU inverter', spec: '12.000 BTU · inverter · 220 V', precio: 429, stock: 5, icono: 'aire', specs: ['12.000 BTU', 'Inverter', '220 V', 'Control remoto'] },
+  { id: 16, cat: 'clima', nombre: 'Ventilador de pie 18"', spec: '18" · 3 velocidades', precio: 45, stock: 0, icono: 'ventilador', specs: ['Aspas de 18"', '3 velocidades', 'Oscilante', 'Altura ajustable'] }
+];
+const TASA = 900;
+const PAGOS = [
+  { id: 'pagomovil', nombre: 'Pago móvil', txt: 'Al instante' },
+  { id: 'zelle', nombre: 'Zelle', txt: 'En dólares' },
+  { id: 'efectivo', nombre: 'Efectivo', txt: 'Al retirar' },
+  { id: 'transferencia', nombre: 'Transferencia', txt: 'Bancos nacionales' }
+];
+
+/* ═══════════ Estado ═══════════ */
+let E = { vista: 'inicio', cat: null, q: '', filtros: [], orden: 'relevancia', carrito: {}, ficha: null, entrega: 'retiro', pago: null, pedido: null, notas: false, toques: 0 };
+const $ = (s, r = document) => r.querySelector(s);
+const usd = (n) => '$' + n.toLocaleString('es-VE', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+const bs = (n) => 'Bs ' + Math.round(n * TASA).toLocaleString('es-VE');
+const pct = (p) => p.antes ? Math.round((1 - p.precio / p.antes) * 100) : 0;
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const sinT = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const prod = (id) => P.find((p) => p.id === id);
+const lineas = () => Object.entries(E.carrito).map(([id, n]) => ({ p: prod(+id), n })).filter((l) => l.p && l.n > 0);
+const unidades = () => lineas().reduce((s, l) => s + l.n, 0);
+const total = () => lineas().reduce((s, l) => s + l.n * l.p.precio, 0);
+
+/* Búsqueda tolerante: sin tildes, por palabras y con sinónimos de uso común. */
+const SINON = { tele: 'tv', televisor: 'tv', television: 'tv', refri: 'nevera', refrigerador: 'nevera', heladera: 'nevera', compu: 'laptop', computadora: 'laptop', portatil: 'laptop', telefono: 'celular', movil: 'celular', aire: 'aire', freidora: 'freidora', corneta: 'barra', parlante: 'barra' };
+function buscar(q) {
+  const palabras = sinT(q).split(/\s+/).filter(Boolean).map((w) => SINON[w] || w);
+  if (!palabras.length) return [];
+  return P.filter((p) => {
+    const txt = sinT(p.nombre + ' ' + p.spec + ' ' + CATS.find((c) => c.id === p.cat).nombre);
+    return palabras.every((w) => txt.includes(w) || (w.length > 3 && txt.includes(w.slice(0, -1))));
+  });
+}
+
+/* ═══════════ Menú ═══════════ */
+function pintarMenu() {
+  const b = (id, txt) => '<button data-cat="' + id + '" class="' + (E.vista === 'catalogo' && E.cat === id && !E.q ? 'activa' : '') + '">' + txt + '</button>';
+  let h = '<span class="grupo">Tecnología</span>';
+  CATS.filter((c) => c.grupo === 'Tecnología').forEach((c) => (h += b(c.id, c.nombre)));
+  h += '<span class="sep"></span><span class="grupo">Hogar</span>';
+  CATS.filter((c) => c.grupo === 'Hogar').forEach((c) => (h += b(c.id, c.nombre)));
+  h += '<span class="sep"></span>' + b('ofertas', 'Ofertas');
+  $('#menu').innerHTML = h;
+}
+
+/* ═══════════ Tarjeta ═══════════ */
+function accionTarjeta(p, nota) {
+  const n = E.carrito[p.id] || 0;
+  if (p.stock === 0) return '<button class="btn btn-borde" data-avisar="' + p.id + '">Avísame cuando llegue</button>';
+  if (n > 0) return '<div class="stepper"' + nota + '><button data-menos="' + p.id + '" aria-label="Quitar uno">−</button><span>' + n + ' en el carrito</span><button data-mas="' + p.id + '" aria-label="Agregar uno">+</button></div>';
+  return '<button class="btn btn-borde" data-agregar="' + p.id + '"' + nota + '>Agregar</button>';
+}
+function tarjeta(p, i) {
+  const o = pct(p);
+  const notaBtn = i === 0 ? ' data-nota="Se agrega desde la tarjeta, sin abrir la ficha: el que ya sabe lo que quiere ahorra un paso. El botón se vuelve un selector de cantidad."' : '';
+  const notaPrecio = i === 0 ? ' data-nota="Precio en dólares grande; la oferta con el precio anterior tachado y el % de descuento. Debajo, la referencia en bolívares a la tasa del día."' : '';
+  let ins = '';
+  if (o) ins += '<span class="insignia">-' + o + '%</span>';
+  if (p.stock > 0 && p.stock <= 3) ins += '<span class="insignia stock">Quedan ' + p.stock + '</span>';
+  if (p.stock === 0) ins += '<span class="insignia agotado">Agotado</span>';
+  return '<article class="tarjeta">'
+    + '<div class="ph" data-ficha="' + p.id + '">' + ico(p.icono) + '<div class="insignias">' + ins + '</div></div>'
+    + '<div class="t-nombre" data-ficha="' + p.id + '">' + esc(p.nombre) + '</div>'
+    + '<div class="t-spec">' + esc(p.spec) + '</div>'
+    + '<div' + notaPrecio + '><div class="precio"><b class="' + (o ? 'rebajado' : '') + '">' + usd(p.precio) + '</b>' + (o ? '<s>' + usd(p.antes) + '</s>' : '') + '</div>'
+    + '<div class="bs">' + bs(p.precio) + '</div></div>'
+    + '<div class="accion">' + accionTarjeta(p, notaBtn) + '</div>'
+    + '</article>';
+}
+
+/* ═══════════ Vistas ═══════════ */
+function vistaInicio() {
+  const ofertas = P.filter((p) => p.antes);
+  const maxPct = Math.max(...ofertas.map(pct));
+  let h = '<section class="hero" data-nota="Una sola promesa arriba y un solo botón. Las ofertas son lo que más se busca: van primero.">'
+    + '<div class="hero-texto"><small>Ofertas de la semana</small><h1>Tecnología y hogar,<br>hasta ' + maxPct + '% menos.</h1>'
+    + '<p>TV, laptops, línea blanca y cocina con precio en dólares y en bolívares, listos para retirar o enviar.</p>'
+    + '<button class="btn btn-primario" data-cat="ofertas">Ver ofertas →</button></div>'
+    + '<div class="hero-iconos">' + ['tv', 'laptop', 'nevera', 'celular', 'freidora', 'lavadora'].map((k) => '<div class="ph">' + ico(k) + '</div>').join('') + '</div></section>';
+  h += '<div class="titulo-seccion"><h2>Compra por categoría</h2></div><div class="cats" data-nota="Las dos mitades del negocio, Tecnología y Hogar, a un toque desde la portada. Seis puertas, no un menú de cincuenta.">';
+  CATS.forEach((c) => {
+    const n = P.filter((p) => p.cat === c.id).length;
+    h += '<button class="cat" data-cat="' + c.id + '"><div class="ph">' + ico(c.icono) + '</div><b>' + c.nombre + '</b><span>' + n + ' productos</span></button>';
+  });
+  h += '</div><div class="titulo-seccion"><h2>Ofertas de la semana</h2><button data-cat="ofertas">Ver todas →</button></div>';
+  h += '<div class="grilla">' + ofertas.slice(0, 4).map(tarjeta).join('') + '</div>';
+  h += '<div class="confianza" data-nota="Lo que frena una compra se responde antes de que el cliente pregunte: cómo lo recibe, cómo paga y qué pasa si falla.">'
+    + '<div><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span><b>Retiro o envío</b>Elige al pagar</span></div>'
+    + '<div><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg><span><b>Pago móvil, Zelle o efectivo</b>Sin tarjeta obligatoria</span></div>'
+    + '<div><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg><span><b>Garantía</b>En cada equipo</span></div></div>';
+  return h;
+}
+
+function listaFiltrada() {
+  let l = E.q ? buscar(E.q) : (E.cat === 'ofertas' ? P.filter((p) => p.antes) : P.filter((p) => p.cat === E.cat));
+  if (E.filtros.includes('oferta')) l = l.filter((p) => p.antes);
+  if (E.filtros.includes('stock')) l = l.filter((p) => p.stock > 0);
+  const rangos = { r1: [0, 100], r2: [100, 400], r3: [400, 1e9] };
+  const activos = Object.keys(rangos).filter((r) => E.filtros.includes(r));
+  if (activos.length) l = l.filter((p) => activos.some((r) => p.precio >= rangos[r][0] && p.precio < rangos[r][1]));
+  const o = { menor: (a, b) => a.precio - b.precio, mayor: (a, b) => b.precio - a.precio, descuento: (a, b) => pct(b) - pct(a) }[E.orden];
+  if (o) l = [...l].sort(o);
+  return l;
+}
+
+function vistaCatalogo() {
+  const titulo = E.q ? 'Resultados para «' + esc(E.q) + '»' : (E.cat === 'ofertas' ? 'Ofertas de la semana' : CATS.find((c) => c.id === E.cat).nombre);
+  const grupo = E.q || E.cat === 'ofertas' ? '' : ' · ' + CATS.find((c) => c.id === E.cat).grupo;
+  const lista = listaFiltrada();
+  const chip = (id, txt) => '<button class="chip ' + (E.filtros.includes(id) ? 'activo' : '') + '" data-filtro="' + id + '">' + txt + '</button>';
+  let h = '<div class="migas"><button data-ir="inicio">Inicio</button>' + grupo + '</div>';
+  h += '<div class="cat-cabecera"><div><h1>' + titulo + '</h1><p>' + lista.length + (lista.length === 1 ? ' producto' : ' productos') + '</p></div>'
+    + '<select class="ordenar" id="orden" aria-label="Ordenar"><option value="relevancia">Más relevantes</option><option value="menor">Menor precio</option><option value="mayor">Mayor precio</option><option value="descuento">Mayor descuento</option></select></div>';
+  h += '<div class="chips" data-nota="Filtros como chips de un toque, sin abrir menús. El conteo se actualiza al instante y se combinan entre sí.">' + chip('oferta', 'En oferta') + chip('stock', 'Disponible') + chip('r1', 'Hasta $100') + chip('r2', '$100 – $400') + chip('r3', 'Más de $400') + '</div>';
+  h += '<div class="grilla">';
+  if (lista.length) h += lista.map(tarjeta).join('');
+  else h += '<div class="vacio" data-nota="Estado vacío diseñado: nunca un callejón sin salida. Siempre hay un siguiente paso."><b>No hay productos con esos filtros</b>Prueba quitando alguno.<br><button class="btn btn-borde" data-limpiar>Quitar filtros</button></div>';
+  return h + '</div>';
+}
+
+function vistaPago() {
+  const ls = lineas();
+  if (!ls.length) { E.vista = 'inicio'; return vistaInicio(); }
+  const op = (grupo, id, nombre, txt) => '<button class="opcion ' + (E[grupo] === id ? 'activa' : '') + '" data-' + grupo + '="' + id + '"><b>' + nombre + '</b><span>' + txt + '</span></button>';
+  let h = '<div class="migas"><button data-ir="inicio">Seguir comprando</button></div><div class="pago"><div>'
+    + '<h1>Finaliza tu pedido</h1><p class="pago-sub">Una sola página, sin crear cuenta.</p>'
+    + '<form id="formPago" novalidate>'
+    + '<div class="bloque" data-nota="Solo dos datos obligatorios: nombre y WhatsApp. Sin registro: cada campo de más es un cliente que se va."><h3><span>1</span>Tus datos</h3><div class="campos">'
+    + '<div class="campo"><label for="fNombre">Nombre y apellido</label><input id="fNombre" autocomplete="name" placeholder="Ana Rodríguez"><div class="msj">Escribe tu nombre</div></div>'
+    + '<div class="campo"><label for="fTel">WhatsApp</label><input id="fTel" inputmode="tel" autocomplete="tel" placeholder="0414 123 4567"><div class="msj">Revisa el número: 11 dígitos</div></div></div></div>'
+    + '<div class="bloque" data-nota="La entrega se elige con un toque y ya viene marcada la opción más común. La dirección solo aparece si hace falta."><h3><span>2</span>Entrega</h3><div class="opciones">'
+    + op('entrega', 'retiro', 'Retiro en tienda', 'Gratis · listo en 2 h') + op('entrega', 'envio', 'Envío a domicilio', 'Se coordina por WhatsApp') + '</div>'
+    + (E.entrega === 'envio' ? '<div class="campos" style="margin-top:12px"><div class="campo ancho"><label for="fDir">Dirección</label><input id="fDir" autocomplete="street-address" placeholder="Calle, edificio, punto de referencia"><div class="msj">Indica la dirección de entrega</div></div></div>' : '')
+    + '</div>'
+    + '<div class="bloque" id="bloquePago" data-nota="Los métodos de pago que usa el cliente venezolano, visibles antes de confirmar. Nada de sorpresas en el último paso."><h3><span>3</span>Pago</h3><div class="opciones cuatro">'
+    + PAGOS.map((x) => op('pago', x.id, x.nombre, x.txt)).join('') + '</div></div>'
+    + '</form></div>';
+  h += '<aside class="bloque resumen" data-nota="El resumen acompaña todo el pago. En celular, el botón de confirmar queda fijo abajo con el total."><h3>Tu pedido</h3>'
+    + ls.map((l) => '<div class="res-item"><span>' + l.n + ' × ' + esc(l.p.nombre) + '</span><b>' + usd(l.n * l.p.precio) + '</b></div>').join('')
+    + '<div class="res-total"><span>Total</span><b>' + usd(total()) + '</b></div><div class="bs" style="text-align:right">' + bs(total()) + '</div>'
+    + '<button class="btn btn-primario" id="confirmar">Confirmar pedido · ' + usd(total()) + '</button>'
+    + '<p class="letra-chica">Te escribimos por WhatsApp para confirmar el pago y la entrega.</p></aside></div>';
+  return h;
+}
+
+function vistaListo() {
+  const d = E.pedido;
+  return '<div class="listo" data-nota="Confirmación con lo que el cliente necesita saber: qué compró, qué número de pedido tiene y qué pasa ahora.">'
+    + '<div class="check"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>'
+    + '<h1>¡Pedido recibido, ' + esc(d.nombre.split(' ')[0]) + '!</h1>'
+    + '<p>Pedido <b>' + d.numero + '</b> · Te escribimos al <b>' + esc(d.tel) + '</b> para confirmar el pago (' + d.pago + ') y la entrega.</p>'
+    + '<div class="toques-final">Llegaste al pedido en <b>' + d.toques + '</b> toques</div>'
+    + '<div style="margin-top:18px">' + d.lineas.map((l) => '<div class="res-item"><span>' + l.n + ' × ' + esc(l.p.nombre) + '</span><b>' + usd(l.n * l.p.precio) + '</b></div>').join('')
+    + '<div class="res-total"><span>Total</span><b>' + usd(d.total) + '</b></div></div>'
+    + '<button class="btn btn-borde" data-reiniciar>Volver a la tienda</button></div>';
+}
+
+/* ═══════════ Ficha ═══════════ */
+function pintarFicha() {
+  const f = $('#ficha');
+  const p = E.ficha ? prod(E.ficha) : null;
+  $('#velo').classList.toggle('abierto', !!p || $('#carrito').classList.contains('abierto'));
+  f.classList.toggle('abierta', !!p);
+  if (!p) return;
+  const o = pct(p), n = Math.max(1, E.cantidadFicha || 1);
+  const c = CATS.find((x) => x.id === p.cat);
+  f.innerHTML = '<button class="cerrar" data-cerrar aria-label="Cerrar">×</button>'
+    + '<div class="ficha-galeria"><div class="ph">' + ico(p.icono) + '<div class="insignias">' + (o ? '<span class="insignia">-' + o + '%</span>' : '') + '</div></div>'
+    + '<div class="miniaturas">' + [0, 1, 2, 3].map(() => '<div class="ph">' + ico(p.icono) + '</div>').join('') + '</div></div>'
+    + '<div class="ficha-info"><div class="migas">' + c.grupo + ' · ' + c.nombre + '</div><h2>' + esc(p.nombre) + '</h2>'
+    + '<div><div class="precio"><b class="' + (o ? 'rebajado' : '') + '">' + usd(p.precio) + '</b>' + (o ? '<s>' + usd(p.antes) + '</s><span class="insignia">Ahorras ' + usd(p.antes - p.precio) + '</span>' : '') + '</div><div class="bs" style="margin-top:2px">' + bs(p.precio) + '</div></div>'
+    + '<div class="disponible" data-nota="Lo que decide la compra va arriba: disponibilidad real, cómo se recibe y la garantía. Sin bajar a buscarlo.">'
+    + (p.stock === 0 ? '<div><i class="poco"></i>Agotado por ahora</div>' : '<div><i class="' + (p.stock <= 3 ? 'poco' : '') + '"></i>' + (p.stock <= 3 ? 'Quedan ' + p.stock + ' unidades' : 'Disponible') + '</div>')
+    + '<div><i></i>Retiro en tienda en 2 h o envío a domicilio</div><div><i></i>Garantía de fábrica</div></div>'
+    + '<div class="specs" data-nota="Las especificaciones que comparan los clientes, en chips que se leen de un vistazo.">' + p.specs.map((s) => '<span>' + esc(s) + '</span>').join('') + '</div>'
+    + (p.stock === 0 ? '<div class="ficha-botones" style="grid-template-columns:1fr"><button class="btn btn-borde" data-avisar="' + p.id + '">Avísame cuando llegue</button></div>'
+      : '<div class="cantidad">Cantidad <div class="stepper chico"><button data-fmenos aria-label="Menos">−</button><span>' + n + '</span><button data-fmas aria-label="Más">+</button></div></div>'
+      + '<div class="ficha-botones"><button class="btn btn-borde" data-fagregar="' + p.id + '">Agregar al carrito</button>'
+      + '<button class="btn btn-primario" data-comprar="' + p.id + '" data-nota="«Comprar ahora» salta el carrito y va directo a la página de pago.">Comprar ahora</button></div>')
+    + '</div>';
+}
+
+/* ═══════════ Carrito ═══════════ */
+function pintarCarrito() {
+  const ls = lineas();
+  $('#cuenta').textContent = unidades();
+  $('#totalCab').textContent = usd(total());
+  let h = '<div class="car-cab"><h2>Tu carrito' + (ls.length ? ' (' + unidades() + ')' : '') + '</h2><button class="cerrar" data-cerrar aria-label="Cerrar">×</button></div>';
+  if (!ls.length) h += '<div class="car-items"><div class="car-vacio"><b>Tu carrito está vacío</b><br>Agrega productos desde el catálogo.</div></div>';
+  else {
+    h += '<div class="car-items">' + ls.map((l) => '<div class="car-item"><div class="ph mini">' + ico(l.p.icono) + '</div><div><b>' + esc(l.p.nombre) + '</b>'
+      + '<div class="car-fila"><div class="stepper chico"><button data-menos="' + l.p.id + '">−</button><span>' + l.n + '</span><button data-mas="' + l.p.id + '">+</button></div><b>' + usd(l.n * l.p.precio) + '</b></div>'
+      + '<button class="quitar" data-quitar="' + l.p.id + '">Quitar</button></div></div>').join('') + '</div>'
+      + '<div class="car-pie"><div class="total"><span>Total</span><b>' + usd(total()) + '</b></div><div class="bs" style="text-align:right;margin-top:-10px">' + bs(total()) + '</div>'
+      + '<button class="btn btn-primario" data-ir="pago">Finalizar compra →</button><button class="seguir" data-cerrar>Seguir comprando</button></div>';
+  }
+  $('#carrito').innerHTML = h;
+}
+
+/* ═══════════ Render ═══════════ */
+function render() {
+  const v = { inicio: vistaInicio, catalogo: vistaCatalogo, pago: vistaPago, listo: vistaListo }[E.vista];
+  $('#vista').innerHTML = v();
+  const orden = $('#orden'); if (orden) orden.value = E.orden;
+  pintarMenu(); pintarCarrito(); pintarFicha(); numerarNotas();
+}
+function ir(vista) { E.vista = vista; if (vista === 'pago' || vista === 'listo') { E.q = ''; $('#q').value = ''; } cerrarTodo(false); render(); window.scrollTo({ top: 0 }); }
+function cerrarTodo(pintar = true) { E.ficha = null; $('#carrito').classList.remove('abierto'); $('#velo').classList.remove('abierto'); if (pintar) pintarFicha(); ocultarGlobo(); }
+function aviso(t) { const a = $('#aviso'); a.textContent = t; a.classList.add('visible'); clearTimeout(aviso.t); aviso.t = setTimeout(() => a.classList.remove('visible'), 1800); }
+function sumar(id, d) {
+  const p = prod(id); const n = (E.carrito[id] || 0) + d;
+  if (n <= 0) delete E.carrito[id]; else E.carrito[id] = Math.min(n, p.stock);
+  if (d > 0 && n > p.stock) aviso('Solo hay ' + p.stock + ' disponibles');
+  const b = $('#abrirCarrito'); b.classList.remove('salta'); void b.offsetWidth; b.classList.add('salta');
+}
+
+/* ═══════════ Notas de diseño ═══════════ */
+function numerarNotas() { document.querySelectorAll('[data-nota]').forEach((el, i) => el.setAttribute('data-n', i + 1)); }
+function mostrarGlobo(el) {
+  const g = $('#globo'); const r = el.getBoundingClientRect();
+  g.innerHTML = '<b>Nota ' + el.getAttribute('data-n') + ' · para desarrollo</b>' + esc(el.getAttribute('data-nota'));
+  g.classList.add('visible');
+  const gw = Math.min(300, innerWidth - 24);
+  let x = Math.min(Math.max(12, r.left), innerWidth - gw - 12);
+  let y = r.bottom + 10; if (y + g.offsetHeight > innerHeight - 10) y = Math.max(10, r.top - g.offsetHeight - 10);
+  g.style.left = x + 'px'; g.style.top = y + 'px';
+}
+function ocultarGlobo() { $('#globo').classList.remove('visible'); }
+document.addEventListener('mouseover', (e) => { if (!E.notas) return; const el = e.target.closest('[data-nota]'); if (el) mostrarGlobo(el); else ocultarGlobo(); });
+
+/* ═══════════ Toques (para el contador del boceto) ═══════════ */
+function contarToque() { E.toques++; avisarMarco({ tipo: 'toques', n: E.toques }); }
+function avisarMarco(m) { try { if (parent !== window) parent.postMessage(Object.assign({ boceto: 'dlr' }, m), '*'); } catch (e) { /* sin marco */ } }
+window.addEventListener('message', (e) => {
+  const d = e.data || {};
+  if (d.boceto !== 'dlr-marco') return;
+  if ('notas' in d) { E.notas = !!d.notas; document.documentElement.classList.toggle('con-notas', E.notas); if (!E.notas) ocultarGlobo(); }
+  if (d.reiniciar) reiniciar();
+});
+function reiniciar() { E = Object.assign(E, { vista: 'inicio', cat: null, q: '', filtros: [], orden: 'relevancia', carrito: {}, ficha: null, entrega: 'retiro', pago: null, pedido: null, toques: 0 }); $('#q').value = ''; cerrarSug(); cerrarTodo(false); render(); window.scrollTo({ top: 0 }); avisarMarco({ tipo: 'toques', n: 0 }); }
+
+/* ═══════════ Buscador ═══════════ */
+function cerrarSug() { $('#sug').classList.remove('abierta'); }
+function pintarSug() {
+  const q = $('#q').value.trim();
+  const s = $('#sug');
+  if (q.length < 2) { cerrarSug(); return; }
+  const r = buscar(q);
+  if (!r.length) {
+    s.innerHTML = '<div class="sug-vacio">No encontramos «' + esc(q) + '». Prueba con <button data-sugerir="tv">TV</button>, <button data-sugerir="nevera">nevera</button> o <button data-sugerir="laptop">laptop</button>.</div>';
+  } else {
+    s.innerHTML = r.slice(0, 4).map((p) => '<div class="sug-item"><div class="ph mini">' + ico(p.icono) + '</div><div class="sug-texto" data-ficha="' + p.id + '"><b>' + esc(p.nombre) + '</b><span>' + usd(p.precio) + (p.antes ? ' · -' + pct(p) + '%' : '') + '</span></div>'
+      + (p.stock === 0 ? '<span class="bs">Agotado</span>' : (E.carrito[p.id] ? '<span class="bs" style="color:var(--ok);font-weight:600">✓ En el carrito</span>' : '<button class="btn btn-borde" style="height:34px;padding:0 12px;font-size:13px" data-agregar="' + p.id + '">+ Agregar</button>')) + '</div>').join('')
+      + '<button class="sug-ver" data-buscar>Ver ' + (r.length === 1 ? 'el resultado' : 'los ' + r.length + ' resultados') + ' →</button>';
+  }
+  s.classList.add('abierta');
+}
+$('#q').addEventListener('input', pintarSug);
+$('#q').addEventListener('focus', pintarSug);
+$('#q').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); verResultados(); } if (e.key === 'Escape') cerrarSug(); });
+function verResultados() { const q = $('#q').value.trim(); if (!q) return; E.q = q; E.cat = null; E.filtros = []; cerrarSug(); $('#q').blur(); ir('catalogo'); }
+
+/* ═══════════ Clics ═══════════ */
+document.addEventListener('click', (e) => {
+  const t = e.target.closest('button, [data-ficha], a');
+  if (!e.target.closest('.buscador')) cerrarSug();
+  if (!t) return;
+  if (E.notas && !t.closest('#globo')) { /* las notas no bloquean el uso */ }
+  contarToque();
+  const d = t.dataset;
+  if (d.ir) { if (d.ir === 'inicio') { E.q = ''; $('#q').value = ''; } ir(d.ir); return; }
+  if (d.cat) { E.cat = d.cat; E.q = ''; $('#q').value = ''; E.filtros = []; E.orden = 'relevancia'; ir('catalogo'); return; }
+  if (d.ficha) { E.ficha = +d.ficha; E.cantidadFicha = 1; cerrarSug(); pintarFicha(); numerarNotas(); return; }
+  if (d.agregar) { sumar(+d.agregar, 1); aviso('Agregado al carrito'); render(); if (t.closest('.sugerencias')) pintarSug(); return; }
+  if (d.mas) { sumar(+d.mas, 1); render(); if ($('#carrito').classList.contains('abierto')) abrirCarrito(); return; }
+  if (d.menos) { sumar(+d.menos, -1); render(); if ($('#carrito').classList.contains('abierto') || t.closest('.carrito')) abrirCarrito(); return; }
+  if (d.quitar) { delete E.carrito[d.quitar]; render(); abrirCarrito(); return; }
+  if ('fmas' in d) { E.cantidadFicha = Math.min((E.cantidadFicha || 1) + 1, prod(E.ficha).stock); pintarFicha(); numerarNotas(); return; }
+  if ('fmenos' in d) { E.cantidadFicha = Math.max((E.cantidadFicha || 1) - 1, 1); pintarFicha(); numerarNotas(); return; }
+  if (d.fagregar) { sumar(+d.fagregar, E.cantidadFicha || 1); E.ficha = null; render(); abrirCarrito(); return; }
+  if (d.comprar) { const id = +d.comprar; if (!E.carrito[id]) sumar(id, E.cantidadFicha || 1); ir('pago'); return; }
+  if (d.avisar) { aviso('Te avisamos por WhatsApp cuando llegue'); return; }
+  if ('cerrar' in d) { cerrarTodo(); return; }
+  if (d.filtro) { const i = E.filtros.indexOf(d.filtro); i === -1 ? E.filtros.push(d.filtro) : E.filtros.splice(i, 1); render(); return; }
+  if ('limpiar' in d) { E.filtros = []; render(); return; }
+  if (d.entrega) { E.entrega = d.entrega; guardarCampos(); render(); restaurarCampos(); return; }
+  if (d.pago) { E.pago = d.pago; $('#bloquePago').classList.remove('error-pago'); guardarCampos(); render(); restaurarCampos(); return; }
+  if (d.sugerir) { $('#q').value = d.sugerir; pintarSug(); $('#q').focus(); return; }
+  if ('buscar' in d) { verResultados(); return; }
+  if ('reiniciar' in d) { reiniciar(); return; }
+  if (t.id === 'abrirCarrito') { abrirCarrito(); return; }
+  if (t.id === 'confirmar') { e.preventDefault(); confirmar(); return; }
+});
+document.addEventListener('change', (e) => { if (e.target.id === 'orden') { E.orden = e.target.value; render(); } });
+$('#velo').addEventListener('click', () => cerrarTodo());
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrarTodo(); });
+function abrirCarrito() { pintarCarrito(); $('#carrito').classList.add('abierto'); $('#velo').classList.add('abierto'); }
+
+let CAMPOS = {};
+function guardarCampos() { ['fNombre', 'fTel', 'fDir'].forEach((id) => { const el = $('#' + id); if (el) CAMPOS[id] = el.value; }); }
+function restaurarCampos() { Object.entries(CAMPOS).forEach(([id, v]) => { const el = $('#' + id); if (el) el.value = v; }); }
+
+function confirmar() {
+  let ok = true;
+  const marcar = (id, bien) => { const c = $('#' + id).closest('.campo'); c.classList.toggle('error', !bien); if (!bien && ok) $('#' + id).focus(); ok = ok && bien; };
+  marcar('fNombre', $('#fNombre').value.trim().length >= 3);
+  marcar('fTel', $('#fTel').value.replace(/\D/g, '').length === 11);
+  if ($('#fDir')) marcar('fDir', $('#fDir').value.trim().length >= 6);
+  if (!E.pago) { $('#bloquePago').classList.add('error-pago'); if (ok) aviso('Elige cómo vas a pagar'); ok = false; }
+  if (!ok) return;
+  E.pedido = { nombre: $('#fNombre').value.trim(), tel: $('#fTel').value.trim(), pago: PAGOS.find((x) => x.id === E.pago).nombre, lineas: lineas(), total: total(), numero: 'DLR-' + (1040 + Math.floor(Math.random() * 60)), toques: E.toques };
+  avisarMarco({ tipo: 'pedido', n: E.toques });
+  E.carrito = {}; CAMPOS = {};
+  ir('listo');
+}
+
+render();
+</script>
+</body>
+</html>

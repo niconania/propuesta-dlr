@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>NFG — Creative agency in Miami</title>
+  <meta name="description" content="Creative agency in Miami: branding, signage, print and custom production." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="img/marcas/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="img/marcas/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="img/marcas/apple-touch-icon.png" />
+  <!-- Vista previa: og:image apunta al sitio de revisión; al publicar en negrofarto.com se cambia a ese dominio. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NFG" />
+  <meta property="og:title" content="NFG — Creative agency in Miami" />
+  <meta property="og:description" content="Creative agency in Miami: branding, signage, print and custom production." />
+  <meta property="og:image" content="https://niconania.github.io/negrofarto-web/prototipo/img/og/og-negrofarto.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="recursos/estilos.css" />
+</head>
+<body class="marca-nfg" data-pagina="agencia" data-base="">
+  <main>
+    <section class="hero">
+      <div class="caja">
+        <div class="hero-texto">
+          <p class="ceja" data-t="hero.ceja"></p>
+          <h1 data-t-html="hero.titulo"></h1>
+          <p class="hero-bajada" data-t="hero.texto"></p>
+          <div class="acciones">
+            <a class="boton boton--acento" href="#cotizar" data-t="hero.cta"></a>
+            <a class="boton boton--borde" href="#trabajos" data-t="hero.cta2"></a>
+          </div>
+        </div>
+      </div>
+      <div class="caja">
+        <div class="cifras">
+          <div><strong>Miami, FL</strong><span data-t="cifra1"></span></div>
+          <div><strong>3</strong><span data-t="cifra2"></span></div>
+          <div><strong>1:1</strong><span data-t="cifra3"></span></div>
+        </div>
+      </div>
+    </section>
+    <div class="cinta" aria-hidden="true"><div class="cinta-pista" id="cinta"></div></div>
+
+    <section class="seccion" id="servicios">
+      <div class="caja">
+        <div class="cabeza-seccion">
+          <p class="ceja" data-t="serv.ceja"></p>
+          <h2 data-t="serv.titulo"></h2>
+          <p class="bajada" data-t="serv.texto"></p>
+        </div>
+        <div class="servicios" id="lista-servicios"></div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--kit" id="kit">
+      <div class="caja kit-grilla">
+        <div class="kit-intro">
+          <p class="ceja" data-t="kit.ceja"></p>
+          <h2 data-t="kit.titulo"></h2>
+          <p class="bajada" data-t="kit.texto"></p>
+          <div class="kit-logo-caja" id="kit-logo-caja">
+            <img class="kit-logo" src="img/marcas/nfg-negro.svg" alt="" width="259" height="135" />
+            <div class="kit-pie">
+              <span class="kit-pista" aria-hidden="true"></span>
+              <p class="kit-cliente" id="kit-cliente" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+        <div class="kit-resultado" id="kit-resultado"></div>
+      </div>
+    </section>
+
+    <section class="seccion" id="trabajos">
+      <div class="caja">
+        <div class="cabeza-seccion cabeza-seccion--fila">
+          <div>
+            <p class="ceja" data-t="trab.ceja"></p>
+            <h2 data-t="trab.titulo"></h2>
+          </div>
+          <div class="chips chips--claro" id="filtros-trabajos" role="group"></div>
+        </div>
+        <div class="trabajos" id="lista-trabajos"></div>
+        <p class="mas-instagram">
+          <a href="https://www.instagram.com/negrofartogroup/" target="_blank" rel="noopener"><svg class="icono" aria-hidden="true"><use href="#i-instagram"/></svg><span data-t="trab.instagram"></span></a>
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion seccion--suave" id="marcas">
+      <div class="caja">
+        <div class="cabeza-seccion">
+          <p class="ceja" data-t="marcas.ceja"></p>
+          <h2 data-t="marcas.titulo"></h2>
+          <p class="bajada" data-t="marcas.texto"></p>
+        </div>
+        <div class="marcas">
+          <article class="marca marca--lf">
+            <img class="marca-logo" src="img/marcas/lafarteda-logo.svg" alt="La Fartedá" width="127" height="64" />
+            <p data-t="marcas.lf_texto"></p>
+            <div class="marca-fotos">
+              <img src="img/productos/camiseta-suero.webp" alt="" loading="lazy" />
+              <img src="img/productos/camiseta-oveja-farta.webp" alt="" loading="lazy" />
+              <img src="img/productos/tote-avena.webp" alt="" loading="lazy" />
+            </div>
+            <div class="marca-pie">
+              <a class="boton boton--crema" href="merch/index.html"><span data-t="marcas.lf_cta"></span><svg class="icono" aria-hidden="true"><use href="#i-flecha"/></svg></a>
+              <span class="marca-ruta">negrofarto.com/merch</span>
+            </div>
+          </article>
+          <article class="marca marca--wc">
+            <img class="marca-logo marca-logo--wc" src="img/marcas/wuandacrafts-logo.svg" alt="WuandaCrafts" width="114" height="100" />
+            <p data-t="marcas.wc_texto"></p>
+            <div class="marca-fotos">
+              <img src="img/wuanda/tote-joe-jonas.webp" alt="" loading="lazy" />
+              <img src="img/wuanda/termos.webp" alt="" loading="lazy" />
+              <img src="img/wuanda/lampara-foto.webp" alt="" loading="lazy" />
+            </div>
+            <div class="marca-pie">
+              <a class="boton boton--negro" href="wuandacrafts/index.html"><span data-t="marcas.wc_cta"></span><svg class="icono" aria-hidden="true"><use href="#i-flecha"/></svg></a>
+              <span class="marca-ruta">negrofarto.com/wuandacrafts</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="nosotros">
+      <div class="caja nosotros">
+        <figure class="nosotros-foto"><img src="img/equipo/juan-bustos.webp" alt="Juan Bustos, CEO & Founder" loading="lazy" /></figure>
+        <div>
+          <p class="ceja" data-t="nos.ceja"></p>
+          <h2 data-t-html="nos.titulo"></h2>
+          <p data-t-html="nos.p1"></p>
+          <p data-t="nos.p2"></p>
+          <ul class="datos-chip">
+            <li data-t="nos.dato1"></li>
+            <li>Miami, FL</li>
+            <li data-t="nos.dato3"></li>
+          </ul>
+          <!-- El último video de Instagram de Juan (instalando con la camiseta de NFG); Instagram solo se carga al abrirlo. -->
+          <button class="video-nosotros" type="button" id="abrir-video" aria-haspopup="dialog">
+            <span class="video-miniatura">
+              <img src="img/equipo/instalacion-ada.webp" alt="" width="360" height="640" loading="lazy" />
+              <span class="boton-play"><svg class="icono" aria-hidden="true"><use href="#i-play"/></svg></span>
+            </span>
+            <span class="video-texto"><strong data-t="nos.video"></strong><span data-t="nos.video_nota"></span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--negra" id="proceso">
+      <div class="caja">
+        <div class="cabeza-seccion">
+          <p class="ceja" data-t="proc.ceja"></p>
+          <h2 data-t="proc.titulo"></h2>
+        </div>
+        <ol class="proceso">
+          <li><span class="proceso-num">01</span><h3 data-t="proc.1t"></h3><p data-t="proc.1x"></p></li>
+          <li><span class="proceso-num">02</span><h3 data-t="proc.2t"></h3><p data-t="proc.2x"></p></li>
+          <li><span class="proceso-num">03</span><h3 data-t="proc.3t"></h3><p data-t="proc.3x"></p></li>
+          <li><span class="proceso-num">04</span><h3 data-t="proc.4t"></h3><p data-t="proc.4x"></p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="seccion" id="cotizar">
+      <div class="caja cotizar">
+        <div>
+          <p class="ceja" data-t="cot.ceja"></p>
+          <h2 data-t="cot.titulo"></h2>
+          <p class="bajada" data-t="cot.texto"></p>
+          <div class="contacto-directo">
+            <button class="contacto-boton wa" type="button" data-whatsapp="miami"><svg class="icono" aria-hidden="true"><use href="#i-whatsapp"/></svg><span><strong>WhatsApp</strong><small data-t="cot.usa"></small></span></button>
+            <a class="contacto-boton" href="mailto:projects@negrofarto.com"><svg class="icono" aria-hidden="true"><use href="#i-correo"/></svg><span><strong>projects@negrofarto.com</strong><small data-t="cot.correo_nota"></small></span></a>
+          </div>
+        </div>
+        <form class="formulario" id="form-cotizar" novalidate>
+          <fieldset class="campo">
+            <legend data-t="cot.servicios"></legend>
+            <div class="chips chips--claro" id="cot-servicios"></div>
+            <p class="error-campo" data-error="servicios" data-t="err.servicios" hidden></p>
+          </fieldset>
+          <div class="fila-2">
+            <label class="campo"><span class="etiqueta-campo" data-t="cot.nombre"></span><input name="nombre" autocomplete="name" /><span class="error-campo" data-error="nombre" data-t="err.nombre" hidden></span></label>
+            <label class="campo"><span class="etiqueta-campo"><span data-t="cot.negocio"></span> <span class="opcional">(<span data-t="cot.opcional"></span>)</span></span><input name="negocio" autocomplete="organization" /></label>
+          </div>
+          <div class="fila-2">
+            <label class="campo"><span class="etiqueta-campo" data-t="cot.telefono"></span><input name="telefono" type="tel" autocomplete="tel" /><span class="error-campo" data-error="telefono" data-t="err.telefono" hidden></span></label>
+            <label class="campo"><span class="etiqueta-campo"><span data-t="cot.correo"></span> <span class="opcional">(<span data-t="cot.opcional"></span>)</span></span><input name="correo" type="email" autocomplete="email" /></label>
+          </div>
+          <fieldset class="campo">
+            <legend data-t="cot.donde"></legend>
+            <div class="opciones-radio">
+              <label class="opcion"><input type="radio" name="donde" value="miami" /><span data-t="cot.miami"></span></label>
+              <label class="opcion"><input type="radio" name="donde" value="eeuu" /><span data-t="cot.eeuu"></span></label>
+              <label class="opcion"><input type="radio" name="donde" value="fuera" /><span data-t="cot.fuera"></span></label>
+            </div>
+            <p class="ruta" id="cot-ruta" hidden></p>
+            <p class="error-campo" data-error="donde" data-t="err.donde" hidden></p>
+          </fieldset>
+          <label class="campo"><span class="etiqueta-campo" data-t="cot.cuando"></span>
+            <select name="cuando">
+              <option value="asap" data-t="cot.asap"></option>
+              <option value="mes" data-t="cot.mes"></option>
+              <option value="trimestre" data-t="cot.trimestre"></option>
+              <option value="explorando" data-t="cot.explorando"></option>
+            </select>
+          </label>
+          <label class="campo"><span class="etiqueta-campo" data-t="cot.mensaje"></span><textarea name="mensaje" rows="4" data-t-ph="cot.mensaje_ph"></textarea></label>
+          <button class="boton boton--acento boton--ancho" type="submit" data-t="cot.enviar"></button>
+          <p class="nota-form" data-t="cot.nota"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <dialog class="modal modal--ancho modal--visor" id="modal-proyecto"></dialog>
+  <dialog class="modal modal--video" id="modal-video"></dialog>
+
+  <script src="recursos/iconos.js"></script>
+  <script src="recursos/textos.js"></script>
+  <script src="recursos/datos.js"></script>
+  <script src="recursos/liquido.js"></script>
+  <script src="recursos/app.js"></script>
+</body>
+</html>

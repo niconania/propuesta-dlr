@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Propuesta — DLR Tecnología y Hogar</title>
+  <style>:root {
+  --color-oscuro: #0F0F0F;
+  --color-crema: #FAF8F5;
+  --color-acento: #B8751E;
+  --color-texto: #1A1A1A;
+  --color-texto-claro: #F7F5F1;
+  --color-texto-muted: #8A8A8A;
+  --fuente: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--fuente);
+  color: var(--color-texto);
+  background: #E4E1DC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+}
+
+.pagina {
+  width: 1280px;
+  height: 720px;
+  flex: none;
+  zoom: var(--escala, 1);
+  padding: 56px 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+}
+.pagina--oscura { background: var(--color-oscuro); color: var(--color-texto-claro); }
+.pagina--crema { background: var(--color-crema); color: var(--color-texto); }
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-texto-muted);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+}
+.pagina--oscura .encabezado { color: var(--color-acento); border-bottom-color: rgba(255,255,255,0.15); }
+
+.etiqueta {
+  color: var(--color-acento);
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.numero-pagina {
+  position: absolute;
+  bottom: 32px;
+  right: 64px;
+  font-size: 9pt;
+  color: var(--color-texto-muted);
+}
+
+.texto-muted { color: var(--color-texto-muted); }
+
+.cuerpo-centrado {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fila-pie {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11pt;
+  line-height: 1.5;
+}
+.fila-pie--con-borde {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 18px;
+}
+.pagina--oscura .fila-pie--con-borde { border-top-color: rgba(255,255,255,0.15); }
+.fila-pie .etiqueta { margin-bottom: 4px; }
+
+.texto-derecha { text-align: right; }
+
+.bajada { margin-top: 24px; max-width: 720px; font-size: 14pt; }
+
+.cuerpo-centrado .lista-guion { margin-top: 24px; }
+
+h1 { font-size: 46pt; font-weight: 400; line-height: 1.1; max-width: 1000px; }
+h1 strong { font-weight: 700; }
+h2 { font-size: 28pt; font-weight: 400; margin-bottom: 16px; line-height: 1.2; }
+h2 strong { font-weight: 700; }
+h3 { font-size: 15pt; font-weight: 700; margin-top: 24px; }
+p { font-size: 13pt; line-height: 1.5; }
+
+.lista-guion { list-style: none; margin-top: 16px; }
+.lista-guion li {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 12px 0 12px 26px;
+  position: relative;
+  font-size: 13pt;
+  line-height: 1.4;
+  break-inside: avoid;
+}
+.pagina--oscura .lista-guion li { border-top-color: rgba(255,255,255,0.15); }
+.lista-guion li::before { content: "—"; color: var(--color-acento); position: absolute; left: 0; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+.grid-2 > div > h3:first-child,
+.grid-3 > div > h3:first-child { margin-top: 0; }
+
+.tarjeta {
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 20px;
+  border-radius: 6px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.tarjeta--recomendada { background: var(--color-oscuro); color: var(--color-texto-claro); border-color: var(--color-oscuro); }
+.tarjeta--placeholder {
+  border-style: dashed;
+  color: var(--color-texto-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 9.5pt;
+}
+.tarjeta-titulo { font-size: 15pt; font-weight: 700; margin-bottom: 10px; }
+.tarjeta-descripcion { font-size: 12pt; }
+.tarjeta-numero { font-size: 26pt; font-weight: 700; color: var(--color-acento); margin-bottom: 14px; line-height: 1; }
+.pagina--oscura .tarjeta { border-color: rgba(255,255,255,0.18); }
+
+.badge {
+  display: inline-block;
+  background: var(--color-acento);
+  color: #FFF;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.stats-fila { display: flex; gap: 40px; margin: 28px 0; }
+.stat { flex: 1; border-left: 3px solid var(--color-acento); padding-left: 16px; }
+.stat .valor { font-size: 38pt; font-weight: 700; display: block; line-height: 1.1; }
+.stat .etiqueta-stat { font-size: 11pt; color: var(--color-texto-muted); }
+
+.caja-tesis { background: var(--color-oscuro); color: var(--color-texto-claro); padding: 26px 30px; border-radius: 8px; margin-top: 8px; }
+.caja-tesis p { font-size: 14pt; }
+
+.agenda {
+  margin-top: 16px;
+  column-count: 2;
+  column-gap: 40px;
+}
+.agenda-fila {
+  display: flex;
+  gap: 16px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 11px 0;
+  break-inside: avoid;
+}
+.agenda-fila strong { font-size: 13pt; }
+.agenda-fila .hora { width: 110px; font-size: 10.5pt; font-weight: 700; color: var(--color-acento); flex-shrink: 0; padding-top: 2px; }
+.agenda-texto { margin-top: 3px; font-size: 11.5pt; }
+
+.opcion-logistica { border: 1px solid rgba(0,0,0,0.15); padding: 24px; border-radius: 8px; background: #FFF; }
+.opcion-logistica--recomendada { border-color: var(--color-acento); border-width: 2px; }
+
+.lista-opciones { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; align-items: start; }
+.opcion-nombre { font-size: 15pt; font-weight: 700; }
+.opcion-horario { font-size: 11pt; color: var(--color-texto-muted); margin: 4px 0 10px; }
+
+.bloque-espaciado { margin-top: 28px; }
+.bloque-espaciado > h3:first-child { margin-top: 0; }
+
+.parrafo-compacto { margin: 8px 0; }
+
+.paquete-nombre { font-size: 9pt; letter-spacing: 0.1em; }
+.paquete-precio-moneda { font-size: 9pt; color: var(--color-texto-muted); margin-top: 8px; }
+.paquete-precio { font-size: 22pt; font-weight: 700; }
+.lista-guion.paquete-items { margin-top: 10px; }
+.lista-guion.paquete-items li { font-size: 9.5pt; padding: 8px 0 8px 22px; }
+
+.inversion {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  margin-top: 24px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.inversion-precio {
+  background: var(--color-oscuro);
+  color: var(--color-texto-claro);
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.inversion-moneda { font-size: 10pt; letter-spacing: 0.12em; color: var(--color-acento); font-weight: 700; }
+.inversion-monto { font-size: 60pt; font-weight: 700; line-height: 1; margin: 6px 0 18px; }
+.inversion-precio p { color: rgba(247,245,241,0.75); font-size: 12.5pt; }
+.inversion-items { padding: 20px 40px; background: #FFF; display: flex; flex-direction: column; justify-content: center; }
+.inversion-items .lista-guion { margin-top: 0; }
+.inversion-items .lista-guion li:first-child { border-top: none; }
+.inversion-regular-fila { font-size: 12.5pt; color: rgba(247,245,241,0.75); margin: -6px 0 18px; }
+.inversion-regular { color: rgba(247,245,241,0.75); text-decoration-thickness: 2px; }
+.inversion-nota { font-size: 10pt; color: var(--color-texto-muted); margin-top: 12px; }
+
+.contacto-ig { color: var(--color-acento); font-weight: 700; text-decoration: none; }
+
+.lista-numerada { counter-reset: numero; }
+.lista-numerada .tarjeta-numero::before { counter-increment: numero; content: counter(numero, decimal-leading-zero); }
+
+.objetivos-grupos .lista-guion { margin-top: 10px; }
+.objetivos-grupos .lista-guion li { font-size: 12pt; padding: 9px 0 9px 26px; }
+.objetivos-grupos h3 { margin-top: 0; }
+.estrategico { margin-top: 12px; }
+.estrategico-item {
+  background: #FFF;
+  border-left: 3px solid var(--color-acento);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-size: 12pt;
+  line-height: 1.45;
+}
+
+.pasos { gap: 28px; margin-top: 28px; }
+.paso { border-top: 1px solid rgba(255,255,255,0.18); padding-top: 18px; }
+.paso p { font-size: 12.5pt; color: rgba(247,245,241,0.8); }
+
+.pagina--portafolio { padding-top: 40px; padding-bottom: 40px; }
+.portafolio-cabecera { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+.portafolio-cabecera h2 { margin-bottom: 0; }
+.portafolio-cabecera p { max-width: 380px; font-size: 11.5pt; text-align: right; }
+.vitrina-pestanas { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 12px; }
+.vitrina-pestana {
+  font: inherit;
+  font-size: 10.5pt;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: #FFF;
+  color: var(--color-texto);
+  cursor: pointer;
+  text-decoration: none;
+}
+.vitrina-pestana.activa { background: var(--color-oscuro); border-color: var(--color-oscuro); color: var(--color-texto-claro); }
+.vitrina-pestana--externa { background: transparent; color: var(--color-acento); border-color: var(--color-acento); }
+.vitrina-marco {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 8px;
+  background: #FFF;
+}
+.vitrina-marco iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 125%;
+  height: 125%;
+  border: 0;
+  transform: scale(0.8);
+  transform-origin: 0 0;
+}
+.vitrina-pie { display: flex; justify-content: space-between; gap: 24px; margin-top: 10px; padding-right: 48px; font-size: 10.5pt; }
+.vitrina-descripcion { color: var(--color-texto-muted); }
+.abrir-nueva { flex: none; font-weight: 700; color: var(--color-acento); text-decoration: none; }
+
+.flujo {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin: auto 0;
+}
+.flujo-paso { flex: 1 1 0; display: flex; flex-direction: column; gap: 10px; }
+.flujo-entradas {
+  height: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  gap: 5px;
+}
+.flujo-chip {
+  font-size: 7.5pt;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 4px 8px;
+  color: rgba(247,245,241,0.8);
+}
+.flujo-tarjeta {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 20px;
+}
+.flujo-numero { font-size: 8pt; font-weight: 700; letter-spacing: 0.12em; color: var(--color-acento); }
+.flujo-nombre { font-size: 15pt; font-weight: 700; margin: 8px 0 10px; }
+.flujo-texto { font-size: 10pt; line-height: 1.5; color: rgba(247,245,241,0.75); }
+.flujo-salida {
+  align-self: flex-start;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--color-acento);
+  color: #FFF;
+  border-radius: 20px;
+  padding: 6px 12px;
+}
+.flujo-flecha { align-self: center; font-size: 20pt; color: var(--color-acento); }
+.flujo-resultado {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-acento);
+  border-radius: 8px;
+  padding: 20px;
+}
+.flujo-resultado .etiqueta { margin-bottom: 4px; }
+.flujo-resultado-valor { font-size: 22pt; font-weight: 700; margin-bottom: 14px; }
+.flujo-mosaico {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.flujo-mosaico span {
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  background: linear-gradient(160deg, rgba(184,117,30,0.55), rgba(255,255,255,0.06));
+}
+.flujo-mosaico span:nth-child(3n) { background: linear-gradient(160deg, rgba(247,245,241,0.35), rgba(255,255,255,0.04)); }
+.flujo-mosaico span:nth-child(4n+2) { background: linear-gradient(160deg, rgba(120,120,120,0.5), rgba(184,117,30,0.2)); }
+
+.casos { display: flex; gap: 32px; margin-top: 20px; }
+.caso { width: min-content; min-width: 230px; }
+.caso-numero { font-size: 8pt; font-weight: 700; letter-spacing: 0.12em; color: var(--color-acento); }
+.caso-titulo { font-size: 13pt; font-weight: 700; margin: 4px 0; }
+.caso-texto { font-size: 9.5pt; line-height: 1.4; min-height: 2.8em; color: rgba(247,245,241,0.7); margin-bottom: 12px; }
+.caso-videos { display: flex; gap: 8px; }
+.caso-video {
+  width: 136px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #000;
+  cursor: zoom-in;
+  display: block;
+}
+.caso-datos { list-style: none; margin-top: 12px; }
+.caso-datos li { font-size: 9pt; line-height: 1.6; color: rgba(247,245,241,0.8); }
+.caso-datos span { color: var(--color-acento); font-weight: 700; }
+.casos-nota { position: absolute; bottom: 32px; left: 64px; font-size: 9pt; color: var(--color-texto-muted); }
+
+.visor {
+  margin: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.visor::backdrop { background: rgba(0,0,0,0.85); }
+.visor video { display: block; max-height: 90vh; max-width: 90vw; border-radius: 8px; }
+
+/* ── Auditoría ── */
+.auditoria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 6px; }
+.hallazgo {
+  --estado: var(--color-texto-muted);
+  background: #FFF;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-top: 4px solid var(--estado);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hallazgo--bien { --estado: #2F8F5B; }
+.hallazgo--mejorar { --estado: #D99A12; }
+.hallazgo--critico { --estado: #C8452F; }
+.hallazgo-cabecera { display: flex; align-items: center; gap: 8px; }
+.hallazgo-estado { width: 9px; height: 9px; border-radius: 50%; background: var(--estado); flex: none; }
+.hallazgo-area { font-size: 12.5pt; font-weight: 700; }
+.hallazgo-texto { font-size: 10pt; line-height: 1.4; color: #4A4A4A; }
+.hallazgo-propuesta { font-size: 10pt; line-height: 1.4; font-weight: 600; margin-top: auto; }
+.hallazgo-propuesta span { color: var(--estado); }
+.auditoria-leyenda { display: flex; gap: 22px; margin-top: 14px; font-size: 9.5pt; color: var(--color-texto-muted); }
+.auditoria-leyenda span { display: flex; align-items: center; gap: 7px; }
+.auditoria-leyenda i { width: 9px; height: 9px; border-radius: 50%; background: var(--estado); }
+
+/* ── Fases ── */
+.fases { list-style: none; display: grid; gap: 24px; margin-top: 30px; }
+.fase-linea { position: relative; height: 34px; margin-bottom: 16px; }
+.fase-linea::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -24px;
+  top: 50%;
+  border-top: 2px solid rgba(0,0,0,0.12);
+}
+.fase:last-child .fase-linea::before { right: 0; }
+.fase-numero {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-oscuro);
+  color: var(--color-texto-claro);
+  font-size: 10pt;
+  font-weight: 700;
+}
+.fase-duracion { font-size: 9.5pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-acento); }
+.fase-nombre { font-size: 15pt; font-weight: 700; margin: 4px 0 8px; }
+.fase-texto { font-size: 11pt; line-height: 1.45; color: #4A4A4A; }
+.fase-entregable {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 9.5pt;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(47,143,91,0.12);
+  color: #23704A;
+}
+
+/* ── Comparativa ── */
+.comparativa { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 11.5pt; }
+.comparativa th, .comparativa td { text-align: left; padding: 11px 16px; border-bottom: 1px solid rgba(0,0,0,0.09); vertical-align: top; }
+.comparativa thead th { font-size: 10pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-texto-muted); }
+.comparativa tbody th { font-weight: 700; width: 24%; }
+.comparativa td { color: #555; width: 38%; }
+.comparativa .comparativa-despues { background: rgba(184,117,30,0.08); color: var(--color-texto); font-weight: 600; }
+.comparativa thead .comparativa-despues { color: var(--color-acento); border-radius: 8px 8px 0 0; }
+.comparativa-nota { font-size: 9.5pt; color: var(--color-texto-muted); margin-top: 12px; }
+
+@media (max-aspect-ratio: 1/1), (max-width: 820px) {
+  body { gap: 12px; padding: 0; }
+  .pagina {
+    zoom: 1;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 32px 22px 56px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  h1 { font-size: 24pt; }
+  h2 { font-size: 16pt; }
+  .encabezado { flex-wrap: wrap; gap: 4px 12px; }
+  .cuerpo-centrado { flex: none; }
+  .bajada { max-width: none; }
+  .fila-pie { flex-direction: column; gap: 18px; margin-top: 32px; }
+  .texto-derecha { text-align: left; }
+
+  .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 20px; }
+  .stats-fila { flex-direction: column; gap: 14px; }
+  .agenda { column-count: 1; }
+
+  .flujo { flex-direction: column; margin: 16px 0 0; }
+  .flujo-entradas { height: auto; }
+  .flujo-flecha { transform: rotate(90deg); }
+
+  .casos { flex-direction: column; gap: 28px; }
+  .caso { width: auto; min-width: 0; }
+  .caso-texto { min-height: 0; }
+  .caso-videos { flex-wrap: wrap; }
+  .caso-video { width: calc(50% - 4px); }
+  .casos-nota { position: static; margin-top: 20px; }
+
+  .inversion { grid-template-columns: 1fr; }
+  .inversion-precio, .inversion-items { padding: 24px 22px; }
+  .inversion-monto { font-size: 44pt; }
+
+  .portafolio-cabecera { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .portafolio-cabecera p { text-align: left; }
+  .vitrina-marco { flex: none; height: 70vh; }
+  .vitrina-marco iframe { width: 100%; height: 100%; transform: none; }
+  .vitrina-pie { flex-direction: column; gap: 6px; padding-right: 0; }
+  .lista-opciones { grid-template-columns: 1fr; }
+
+  .auditoria { grid-template-columns: 1fr; }
+  .auditoria-leyenda { flex-wrap: wrap; gap: 10px 18px; }
+  .fases { grid-template-columns: 1fr !important; gap: 0; margin-top: 20px; }
+  .fase { position: relative; padding: 0 0 26px 50px; }
+  .fase-linea { position: absolute; left: 0; top: 0; bottom: 0; height: auto; margin: 0; }
+  .fase-linea::before { left: 17px; right: auto; top: 0; bottom: 0; border-top: none; border-left: 2px solid rgba(0,0,0,0.12); }
+  .fase:last-child .fase-linea::before { display: none; }
+  .comparativa, .comparativa tbody, .comparativa tr, .comparativa th, .comparativa td { display: block; width: auto; }
+  .comparativa thead { display: none; }
+  .comparativa tbody th, .comparativa td { width: auto; }
+  .comparativa-fila { border-bottom: 1px solid rgba(0,0,0,0.12); padding: 10px 0; }
+  .comparativa th, .comparativa td { border: none; padding: 4px 0; }
+  .comparativa td::before { display: block; font-size: 8.5pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-texto-muted); content: attr(data-columna); }
+  .comparativa .comparativa-despues { padding: 6px 10px; border-radius: 6px; }
+}
+</style>
+</head>
+<body>
+    <section class="pagina pagina--oscura">
+      <div class="encabezado">
+        <span>PROPUESTA · DISEÑO UI/UX</span>
+        <span>Noviembre 2026</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">REDISEÑO INTEGRAL DEL E-COMMERCE</div>
+        <h1>Que encuentren lo que buscan <strong>y lo compren en pocos pasos.</strong></h1>
+        <p class="texto-muted bajada">Un catálogo claro, una ficha que resuelve las dudas y un pago en una sola página para DLR, con entregables que su equipo de desarrollo implementa sin adivinar.</p>
+      </div>
+      <div class="fila-pie">
+        <div>
+          <div class="etiqueta">PREPARADA PARA</div>
+          <div>DLR Tecnología y Hogar</div>
+          <div class="texto-muted">A la atención de Graficable</div>
+        </div>
+        <div class="texto-derecha">
+          <div class="etiqueta">POR</div>
+          <div>Nicola Nania</div>
+          <div class="texto-muted">Diseñador UI/UX · Brand Manager</div>
+        </div>
+      </div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>01 / EL BRIEF</span>
+      </div>
+      <div class="etiqueta">LO QUE ENTENDÍ</div>
+      <h2>Menos pasos entre ver un producto <strong>y comprarlo.</strong></h2>
+      <p>DLR necesita rediseñar su tienda online de punta a punta: un catálogo interactivo e intuitivo, pensado para vender, donde el cliente encuentre el equipo que busca y lo compre en la menor cantidad de pasos. El diseño se hace junto a Marketing y se entrega listo para que desarrollo lo construya.</p>
+    
+      <h3>Lo que no es</h3>
+      <ul class="lista-guion">
+        <li>No es maquillar la tienda actual: es repensar cómo se busca, se elige y se paga.</li>
+        <li>No es desarrollo: entrego el diseño completo y su equipo lo programa.</li>
+        <li>No es diseñar a ciegas: parto de su brief, su manual de marca y lo que Marketing ya sabe de sus clientes.</li>
+      </ul>
+    
+      <h3>Lo que sí es</h3>
+      <ul class="lista-guion">
+        <li><strong>Un catálogo que se recorre solo.</strong>&nbsp;Tecnología y Hogar a un toque, filtros de un toque y un buscador que responde mientras se escribe.</li>
+        <li><strong>Una compra corta.</strong>&nbsp;Agregar desde la tarjeta, carrito al costado y pago en una sola página, sin crear cuenta.</li>
+        <li><strong>Cero ambigüedad para desarrollo.</strong>&nbsp;Cada pantalla, estado y comportamiento especificado, en celular y en computadora.</li>
+      </ul>
+      <div class="numero-pagina">01</div>
+    </section>
+    <section class="pagina pagina--oscura">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>02 / LA COMPRA</span>
+      </div>
+      <div class="etiqueta">EL RECORRIDO QUE PROPONGO</div>
+      <h2>Tres pasos, <strong>de la portada al pedido.</strong></h2>
+    
+      <div class="flujo">
+        <div class="flujo-paso">
+          <div class="flujo-entradas">
+            <span class="flujo-chip">Buscador</span><span class="flujo-chip">Categorías</span><span class="flujo-chip">Filtros</span>
+          </div>
+          <div class="flujo-tarjeta">
+            <div class="flujo-numero">PASO 01</div>
+            <div class="flujo-nombre">Encuentra</div>
+            <p class="flujo-texto">Buscador siempre visible con resultados mientras se escribe, las categorías de Tecnología y Hogar a un toque y filtros que no esconden nada.</p>
+          </div>
+          <div class="flujo-salida">→ El producto</div>
+        </div>
+        <div class="flujo-flecha">→</div>
+        <div class="flujo-paso">
+          <div class="flujo-entradas">
+            <span class="flujo-chip">Precio</span><span class="flujo-chip">Stock</span><span class="flujo-chip">Entrega</span><span class="flujo-chip">Garantía</span>
+          </div>
+          <div class="flujo-tarjeta">
+            <div class="flujo-numero">PASO 02</div>
+            <div class="flujo-nombre">Decide</div>
+            <p class="flujo-texto">Precio en dólares y en bolívares, disponibilidad real, entrega y garantía arriba; las especificaciones, en chips que se comparan de un vistazo.</p>
+          </div>
+          <div class="flujo-salida">→ La decisión</div>
+        </div>
+        <div class="flujo-flecha">→</div>
+        <div class="flujo-paso">
+          <div class="flujo-entradas">
+            <span class="flujo-chip">Carrito</span><span class="flujo-chip">Entrega</span><span class="flujo-chip">Pago</span>
+          </div>
+          <div class="flujo-tarjeta">
+            <div class="flujo-numero">PASO 03</div>
+            <div class="flujo-nombre">Compra</div>
+            <p class="flujo-texto">Agregar sin salir del catálogo, carrito al costado y pago en una página: datos, entrega y método de pago, sin crear cuenta.</p>
+          </div>
+          <div class="flujo-salida">→ El pedido</div>
+        </div>
+        <div class="flujo-flecha">→</div>
+    
+        <div class="flujo-resultado">
+          <div class="etiqueta">EN EL BOCETO</div>
+          <div class="flujo-resultado-valor">5 toques</div>
+          <p class="flujo-texto">Es lo que toma un pedido completo en el boceto de la página siguiente, desde la portada y sin contar lo que se escribe. Así se mide el diseño final: cada paso que sobra es un cliente que se va.</p>
+        </div>
+      </div>
+      <div class="numero-pagina">02</div>
+    </section>
+    <section class="pagina pagina--crema pagina--portafolio">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>03 / EL BOCETO</span>
+      </div>
+      <div class="portafolio-cabecera">
+        <div>
+          <div class="etiqueta">YA EMPECÉ</div>
+          <h2>Así se compraría en DLR. <strong>Pruébenlo.</strong></h2>
+        </div>
+        <p class="texto-muted">Un wireframe navegable hecho para esta propuesta: busquen, filtren, agreguen y paguen. Con «Notas de diseño» ven por qué cada cosa está donde está; con «Celular», cómo se ve en el teléfono.</p>
+      </div>
+    
+      <div class="vitrina-pestanas">
+        <button type="button" class="vitrina-pestana activa" data-url="vitrinas/boceto/index.html" data-descripcion="Productos, precios y textos de ejemplo; la marca final sale de su manual. No envía nada.">Computadora</button>
+        <button type="button" class="vitrina-pestana" data-url="vitrinas/boceto/index.html?disp&#x3D;cel" data-descripcion="Pensado primero para el teléfono: buscador arriba, ficha que sube desde abajo y el botón de pagar fijo con el total.">Celular</button>
+        <button type="button" class="vitrina-pestana" data-url="vitrinas/boceto/index.html?notas&#x3D;1" data-descripcion="Cada número explica una decisión de diseño, como llegarían en las especificaciones para su equipo.">Notas para desarrollo</button>
+        
+      </div>
+      <div class="vitrina-marco"><iframe src="vitrinas/boceto/index.html" title="Vitrina del portafolio"></iframe></div>
+      <div class="vitrina-pie">
+        <span class="vitrina-descripcion">Productos, precios y textos de ejemplo; la marca final sale de su manual. No envía nada.</span>
+        <a class="abrir-nueva" href="vitrinas/boceto/index.html" target="_blank" rel="noopener">Abrir en pestaña nueva ↗</a>
+      </div>
+      <script>
+        (function () {
+          var seccion = document.currentScript.closest('section');
+          var marco = seccion.querySelector('.vitrina-marco iframe');
+          var descripcion = seccion.querySelector('.vitrina-descripcion');
+          var abrir = seccion.querySelector('.abrir-nueva');
+          var pestanas = seccion.querySelectorAll('button.vitrina-pestana');
+          pestanas.forEach(function (pestana) {
+            pestana.addEventListener('click', function () {
+              pestanas.forEach(function (p) { p.classList.toggle('activa', p === pestana); });
+              marco.src = pestana.dataset.url;
+              abrir.href = pestana.dataset.url;
+              descripcion.textContent = pestana.dataset.descripcion;
+            });
+          });
+        })();
+      </script>
+      <div class="numero-pagina">03</div>
+    </section>
+    <section class="pagina pagina--crema pagina--portafolio">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>04 / PORTAFOLIO</span>
+      </div>
+      <div class="portafolio-cabecera">
+        <div>
+          <div class="etiqueta">TRABAJO REAL</div>
+          <h2>Tiendas y webs que ya diseñé. <strong>Navéguenlas aquí.</strong></h2>
+        </div>
+        <p class="texto-muted">No son capturas: cada pestaña es el sitio funcionando. Empiecen por la tienda de SVR y su panel de ofertas.</p>
+      </div>
+    
+      <div class="vitrina-pestanas">
+        <button type="button" class="vitrina-pestana activa" data-url="vitrinas/svr-tienda/tienda/index.html" data-descripcion="Tienda online de SVR Venezuela: filtros por línea y precio, ofertas con su % de descuento, precio en dólares y bolívares y pedido por WhatsApp. Copia de demostración: no envía pedidos.">Tienda SVR</button>
+        <button type="button" class="vitrina-pestana" data-url="vitrinas/svr-tienda/tienda/4dm1n/index.html#precios" data-descripcion="Con este panel, Marketing cambia precios, pone ofertas y marca agotados sin programador. Pongan un descuento y mírenlo en la Tienda SVR.">Panel de ofertas</button>
+        <button type="button" class="vitrina-pestana" data-url="vitrinas/nfg/merch/index.html" data-descripcion="Tienda de ropa de NFG (Miami y Cartagena): carrito con precios en USD o COP según el país y pedido directo por WhatsApp. Copia de demostración del sitio en desarrollo: no envía pedidos.">La Fartedá</button>
+        <button type="button" class="vitrina-pestana" data-url="vitrinas/nfg/wuandacrafts/index.html" data-descripcion="Catálogo de regalos personalizados estilo Etsy: color, cantidad con precio por volumen y personalización con nombre y logo.">WuandaCrafts</button>
+        <button type="button" class="vitrina-pestana" data-url="vitrinas/sbc/index.html" data-descripcion="Rediseño bilingüe para una empresa de carga en Miami: una página por servicio, herramienta interactiva de flete y cotizador en 3 pasos.">Stone Bridge</button>
+        <button type="button" class="vitrina-pestana" data-url="vitrinas/sistema/index.html" data-descripcion="La plataforma del equipo comercial de J-Medical: ventas, aprobaciones, inventario, cobranza y reportes. Réplica con marca y datos ficticios.">Plataforma interna</button>
+        <button type="button" class="vitrina-pestana" data-url="vitrinas/alebri/index.html" data-descripcion="Portafolio de marca personal: cada área pinta la web de su color y el personaje saluda desde la portada.">byalebri</button>
+        <button type="button" class="vitrina-pestana" data-url="https://3nity-web.vercel.app/" data-descripcion="Landing de un estudio de diseño e impresión 3D en Caracas, con formulario de cotización. En desarrollo.">3NITY</button>
+        
+        <a class="vitrina-pestana vitrina-pestana--externa" href="https://spillmug.com" target="_blank" rel="noopener">SpillMug ↗</a>
+        
+      </div>
+      <div class="vitrina-marco"><iframe src="vitrinas/svr-tienda/tienda/index.html" title="Vitrina del portafolio"></iframe></div>
+      <div class="vitrina-pie">
+        <span class="vitrina-descripcion">Tienda online de SVR Venezuela: filtros por línea y precio, ofertas con su % de descuento, precio en dólares y bolívares y pedido por WhatsApp. Copia de demostración: no envía pedidos.</span>
+        <a class="abrir-nueva" href="vitrinas/svr-tienda/tienda/index.html" target="_blank" rel="noopener">Abrir en pestaña nueva ↗</a>
+      </div>
+      <script>
+        (function () {
+          var seccion = document.currentScript.closest('section');
+          var marco = seccion.querySelector('.vitrina-marco iframe');
+          var descripcion = seccion.querySelector('.vitrina-descripcion');
+          var abrir = seccion.querySelector('.abrir-nueva');
+          var pestanas = seccion.querySelectorAll('button.vitrina-pestana');
+          pestanas.forEach(function (pestana) {
+            pestana.addEventListener('click', function () {
+              pestanas.forEach(function (p) { p.classList.toggle('activa', p === pestana); });
+              marco.src = pestana.dataset.url;
+              abrir.href = pestana.dataset.url;
+              descripcion.textContent = pestana.dataset.descripcion;
+            });
+          });
+        })();
+      </script>
+      <div class="numero-pagina">04</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>05 / CÓMO TRABAJAMOS</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">SUS DETALLES CLAVE, MI FORMA DE TRABAJAR</div>
+        <h2>Leí cómo trabajan. <strong>Encajamos.</strong></h2>
+        <p>Lo que publicaron en El Chamba Hub sobre su forma de trabajar es justo como me gusta trabajar a mí.</p>
+    
+        <div class="grid-2">
+          <div class="tarjeta">
+            <div class="tarjeta-titulo">Planifican con margen → fechas por etapa</div>
+            <p class="tarjeta-descripcion">Cuatro entregas con fecha fija desde el primer día. Si algo se mueve, lo aviso antes, no el día de la entrega.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-titulo">Brief ordenado → arranco el día uno</div>
+            <p class="tarjeta-descripcion">Con su brief y su manual de marca no hay semanas de idas y vueltas. Y entrego igual: todo en carpetas, con nombres claros.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-titulo">WhatsApp → avances que se ven en el teléfono</div>
+            <p class="tarjeta-descripcion">Capturas y enlaces que se abren en el celular, y cada decisión queda por escrito en el chat.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-titulo">Aprobación rápida → nada se acumula</div>
+            <p class="tarjeta-descripcion">Cada etapa termina con una pregunta concreta para aprobar, y seguimos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="numero-pagina">05</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>06 / PLAN DE TRABAJO</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">PLAN DE TRABAJO</div>
+        <h2>Cuatro etapas, <strong>cuatro semanas.</strong></h2>
+        <p class="texto-muted">Cada etapa cierra con algo concreto para revisar y aprobar por WhatsApp.</p>
+    
+        <ol class="fases" style="grid-template-columns: repeat(4, 1fr);">
+          <li class="fase">
+            <div class="fase-linea"><span class="fase-numero">01</span></div>
+            <div class="fase-duracion">Semana 1</div>
+            <div class="fase-nombre">Descubrimiento</div>
+            <p class="fase-texto">Brief, manual de marca y lo que Marketing sabe de ventas; mapa del catálogo, filtros y recorrido de compra.</p>
+            <div class="fase-entregable">✓ Arquitectura aprobada</div>
+          </li>
+          <li class="fase">
+            <div class="fase-linea"><span class="fase-numero">02</span></div>
+            <div class="fase-duracion">Semana 2</div>
+            <div class="fase-nombre">Wireframes</div>
+            <p class="fase-texto">Portada, catálogo, búsqueda, ficha, carrito y pago en celular y computadora, navegables y sin color todavía.</p>
+            <div class="fase-entregable">✓ Wireframes navegables</div>
+          </li>
+          <li class="fase">
+            <div class="fase-linea"><span class="fase-numero">03</span></div>
+            <div class="fase-duracion">Semana 3</div>
+            <div class="fase-nombre">Diseño visual</div>
+            <p class="fase-texto">La marca de DLR aplicada a todas las pantallas y un sistema de componentes con todos sus estados.</p>
+            <div class="fase-entregable">✓ UI en alta + prototipo</div>
+          </li>
+          <li class="fase">
+            <div class="fase-linea"><span class="fase-numero">04</span></div>
+            <div class="fase-duracion">Semana 4</div>
+            <div class="fase-nombre">Entrega a desarrollo</div>
+            <p class="fase-texto">Especificaciones, recursos exportados y una sesión con su equipo de desarrollo para resolver dudas.</p>
+            <div class="fase-entregable">✓ Paquete para desarrollo</div>
+          </li>
+        </ol>
+      </div>
+      <div class="numero-pagina">06</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>07 / ENTREGABLES</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">QUÉ RECIBEN</div>
+        <h2>Todo lo que desarrollo necesita <strong>para construir sin preguntar.</strong></h2>
+        <div class="grid-3 lista-numerada" style="grid-template-columns: repeat(5, 1fr);">
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Arquitectura y flujos</div>
+            <p class="tarjeta-descripcion">El mapa del catálogo (categorías y filtros) y el recorrido de compra, paso a paso.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Pantallas en alta</div>
+            <p class="tarjeta-descripcion">Portada, catálogo, búsqueda, ficha, carrito, pago y confirmación, en celular y en computadora.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Sistema de componentes</div>
+            <p class="tarjeta-descripcion">Colores, tipografías, botones, tarjetas y formularios con sus estados: vacío, error, cargando y agotado.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Prototipo navegable</div>
+            <p class="tarjeta-descripcion">Para probar la compra completa con el equipo, y con clientes, antes de escribir una línea de código.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Guía de implementación</div>
+            <p class="tarjeta-descripcion">Medidas, espaciados, comportamientos y recursos exportados (SVG y WebP), ordenados en carpetas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="numero-pagina">07</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>08 / INVERSIÓN</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">INVERSIÓN</div>
+        <h2>El presupuesto que publicaron, <strong>con todo incluido.</strong></h2>
+        <div class="inversion">
+          <div class="inversion-precio">
+            <div class="inversion-moneda">USD</div>
+            <div class="inversion-monto">600</div>
+            
+            <p>Rediseño integral del e-commerce de DLR, del descubrimiento al paquete para desarrollo, en cuatro semanas.</p>
+          </div>
+          <div class="inversion-items">
+            <ul class="lista-guion">
+              <li>Arquitectura del catálogo y del recorrido de compra, junto a Marketing.</li>
+              <li>Wireframes navegables en celular y computadora.</li>
+              <li>Diseño visual en alta con la marca de DLR y su sistema de componentes.</li>
+              <li>Prototipo navegable y guía de implementación para desarrollo.</li>
+              <li>Dos rondas de ajustes por etapa y una sesión de entrega con desarrollo.</li>
+            </ul>
+            <p class="inversion-nota">Sin anticipo: 50 % al aprobar la arquitectura (semana 1) y 50 % al entregar el paquete final. El desarrollo y el hosting no están incluidos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="numero-pagina">08</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>09 / QUIÉN DISEÑA</span>
+      </div>
+      <div class="etiqueta">QUIÉN DISEÑA</div>
+      <h2>Nicola <strong>Nania.</strong></h2>
+      <p>Diseñador gráfico y licenciado en Comunicación Social, con más de cinco años en publicidad, mercadeo y diseño de interfaz. Como Brand Manager en J-Medical diseñé y mantengo la tienda online de SVR Venezuela, y diseño webs y tiendas para marcas en Venezuela y en Miami.</p>
+    
+      <div class="grid-2">
+        <div>
+          <h3>Formación</h3>
+          <ul class="lista-guion">
+            <li>Licenciado en Comunicación Social</li>
+            <li>Diseñador gráfico por formación</li>
+            <li>Máster en Marketing Digital, Arquitectura de Software y Asistencia Virtual — Remotos Academy (en curso)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Herramientas</h3>
+          <ul class="lista-guion">
+            <li>Photoshop, Illustrator y After Effects para lo visual.</li>
+            <li>HTML, CSS y JavaScript para prototipos que funcionan de verdad.</li>
+            <li>VS Code y Claude Code para construir y probar rápido.</li>
+            <li>Blender para producto en 3D.</li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="bloque-espaciado">
+        <h3>Por qué yo para DLR</h3>
+        <p>Diseño tiendas que están en línea y las mido después del lanzamiento: en la de SVR, cada paso de la compra (agregar, iniciar el pago, pedir) queda registrado en Analytics y en Meta. Y como mis prototipos se construyen en el navegador, su equipo de desarrollo recibe comportamientos reales, no láminas para interpretar.</p>
+      </div>
+      <div class="numero-pagina">09</div>
+    </section>
+    <section class="pagina pagina--oscura">
+      <div class="encabezado">
+        <span>DLR Tecnología y Hogar × NICONANIA</span>
+        <span>10 / CIERRE</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">PRÓXIMOS PASOS</div>
+        <h2>Si conecta, el siguiente paso <strong>es simple.</strong></h2>
+        <div class="grid-3 pasos" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="paso">
+            <div class="tarjeta-numero">Uno.</div>
+            <p>Me escriben por WhatsApp y agendamos 30 minutos con Marketing.</p>
+          </div>
+          <div class="paso">
+            <div class="tarjeta-numero">Dos.</div>
+            <p>Me comparten la carpeta: brief, manual de marca y acceso a la tienda actual.</p>
+          </div>
+          <div class="paso">
+            <div class="tarjeta-numero">Tres.</div>
+            <p>En una semana revisan la arquitectura y el recorrido de compra.</p>
+          </div>
+          <div class="paso">
+            <div class="tarjeta-numero">Cuatro.</div>
+            <p>En la semana 4 reciben el paquete completo para desarrollo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fila-pie fila-pie--con-borde">
+        <div>
+          <div>Nicola Nania</div>
+          <div class="texto-muted">Diseñador UI/UX · Brand Manager</div>
+          <a class="contacto-ig" href="https://instagram.com/niconania_" target="_blank" rel="noopener">Instagram @niconania_</a>
+        </div>
+        <div class="texto-derecha">
+          <div class="texto-muted">Propuesta válida hasta</div>
+          <div><strong>25 de noviembre, 2026</strong></div>
+        </div>
+      </div>
+      <div class="numero-pagina">10</div>
+    </section>
+  <script>
+    (function () {
+      function ajustar() {
+        var escala = Math.min((innerWidth - 48) / 1280, (innerHeight - 48) / 720);
+        document.documentElement.style.setProperty('--escala', Math.max(escala, 0.4).toFixed(4));
+      }
+      ajustar();
+      addEventListener('resize', ajustar);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>alebri — Alejandra Briceño · diseño, animación, cine y contenido</title>
+  <meta name="description" content="Portafolio de Alejandra Briceño (alebri), comunicadora visual: diseño, animación, cine y creación de contenido." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="img/marca/icono.png" />
+  <link rel="stylesheet" href="recursos/estilos.css" />
+</head>
+<body data-pagina="inicio" data-area="todo">
+  <main>
+    <section class="hero">
+      <div class="caja hero-grilla">
+        <div class="hero-texto">
+          <p class="saludo">Hola, soy <strong>Alejandra Briceño</strong> · comunicadora visual</p>
+          <h1 class="hero-areas">
+            <a href="#proyectos" data-area="diseno">diseño</a>
+            <a href="#proyectos" data-area="animacion">animación</a>
+            <a href="#proyectos" data-area="cine">cine</a>
+            <span class="hero-y">y <a href="#proyectos" data-area="contenido">contenido</a></span>
+          </h1>
+          <p class="hero-bajada">Cada color es un área. El negro es donde todo se junta: por eso mi personaje es negro.</p>
+          <div class="acciones">
+            <a class="boton boton--acento" href="#proyectos">Ver proyectos</a>
+            <a class="boton boton--borde" href="#contacto">Hablemos</a>
+          </div>
+        </div>
+        <div class="hero-arte">
+          <div class="hero-circulo" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="caja">
+        <div class="numeros" id="numeros"></div>
+      </div>
+    </section>
+
+    <section class="seccion" id="areas">
+      <div class="caja">
+        <div class="cabeza">
+          <p class="ceja">Áreas</p>
+          <h2>Cuatro formas de contar <em>una misma historia.</em></h2>
+        </div>
+        <div class="areas" id="lista-areas"></div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--blanca" id="proyectos">
+      <div class="caja">
+        <div class="cabeza cabeza--fila">
+          <div>
+            <p class="ceja">Proyectos</p>
+            <h2 id="titulo-proyectos">Todo lo que he hecho, <em>por áreas.</em></h2>
+          </div>
+          <div class="filtros" id="filtros" role="group" aria-label="Filtrar proyectos por área"></div>
+        </div>
+        <div class="subfiltros" id="subfiltros" role="group" aria-label="Filtrar diseño" hidden></div>
+        <div class="proyectos" id="lista-proyectos"></div>
+      </div>
+    </section>
+
+    <section class="seccion" id="premios">
+      <div class="caja premios-grilla">
+        <figure class="premios-foto" data-revelar>
+          <img src="img/redes/young-lions.webp" alt="Alejandra con su equipo en Young Lions" loading="lazy" />
+        </figure>
+        <div>
+          <p class="ceja">Reconocimientos</p>
+          <h2>El trabajo <em>también habla afuera.</em></h2>
+          <ul class="premios" id="lista-premios"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--negra" id="sobre-mi">
+      <div class="caja sobre-grilla">
+        <figure class="sobre-foto" data-revelar>
+          <img src="img/marca/alebri.webp" alt="Alejandra Briceño frente a un dibujo de animación" loading="lazy" />
+          <figcaption>the illusion of life</figcaption>
+        </figure>
+        <div data-revelar>
+          <p class="ceja">Sobre mí</p>
+          <h2>Soy Alejandra Briceño Cherubini, <em>alebri.</em></h2>
+          <p>Comunicadora visual de Caracas. Diseño identidades y redes para marcas, animo, y hago cine animado: Raíces, mi corto, tuvo una Mención Especial en Cortoscopio 2023.</p>
+          <p>He trabajado con la agencia Debar Inc., como diseñadora in-house en La Cocina Pickleball y por mi cuenta, con marcas como Cetaphil, Churromania y Cones Group.</p>
+          <ul class="herramientas">
+            <li>Illustrator</li><li>Photoshop</li><li>After Effects</li><li>Autodesk Maya</li><li>Lightroom</li>
+          </ul>
+          <p class="sobre-colores"><span class="punto punto--azul"></span><span class="punto punto--amarillo"></span><span class="punto punto--rosado"></span><span class="punto punto--negro"></span> Azul diseño, amarillo animación, rosado cine. Y el negro, donde todo se junta.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="contacto">
+      <div class="caja contacto-grilla">
+        <div>
+          <p class="ceja">Contacto</p>
+          <p class="lema"><span>let’s create</span> your visuals!</p>
+          <p class="contacto-texto">Cuéntame qué tienes en mente: una marca, una animación, un corto o una colaboración de contenido.</p>
+          <ul class="redes" id="lista-redes"></ul>
+        </div>
+        <form class="formulario" id="form-contacto" novalidate>
+          <fieldset class="campo">
+            <legend>¿Qué necesitas?</legend>
+            <div class="chips" id="chips-contacto"></div>
+            <p class="error" data-error="tipos" hidden>Elige al menos una opción.</p>
+          </fieldset>
+          <div class="fila-2">
+            <label class="campo"><span class="etiqueta">Nombre</span><input name="nombre" autocomplete="name" /><span class="error" data-error="nombre" hidden>Dime tu nombre.</span></label>
+            <label class="campo"><span class="etiqueta">Correo</span><input name="correo" type="email" autocomplete="email" /><span class="error" data-error="correo" hidden>Necesito un correo para responderte.</span></label>
+          </div>
+          <label class="campo"><span class="etiqueta">Cuéntame tu idea</span><textarea name="mensaje" rows="4" placeholder="Ej.: estoy lanzando una marca de café y necesito el logo y las redes."></textarea><span class="error" data-error="mensaje" hidden>Cuéntame un poco de tu proyecto.</span></label>
+          <button class="boton boton--acento boton--ancho" type="submit">Enviar</button>
+          <p class="nota">Prototipo: el mensaje se muestra, no se envía.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="recursos/datos.js"></script>
+  <script src="recursos/muneca.js"></script>
+  <script src="recursos/app.js"></script>
+</body>
+</html>

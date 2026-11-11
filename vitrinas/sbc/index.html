@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Stone Bridge Cargo — International Freight Forwarding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body data-pagina="inicio">
+  <main id="inicio">
+    <section class="portada">
+      <div class="caja">
+        <div>
+          <div class="antetitulo" data-t="portada.antetitulo"></div>
+          <h1 data-t-html="portada.titulo"></h1>
+          <p class="portada-bajada" data-t="portada.bajada"></p>
+          <div class="portada-botones">
+            <a class="boton boton--naranja" href="#cotizar"><span data-t="portada.cta"></span> <svg class="icono"><use href="#i-flecha"/></svg></a>
+            <button class="boton boton--borde abrir-whatsapp" type="button"><svg class="icono"><use href="#i-whatsapp"/></svg> <span data-t="portada.experto"></span></button>
+          </div>
+        </div>
+
+        <form class="rapida" id="rapida" novalidate>
+          <h2 data-t="rapida.titulo"></h2>
+          <div class="rapida-modos" role="group" data-t-aria="rapida.modo">
+            <button type="button" data-modo="ocean" aria-pressed="true"><svg class="icono"><use href="#i-barco"/></svg><span data-t="modo.corto.ocean"></span></button>
+            <button type="button" data-modo="air" aria-pressed="false"><svg class="icono"><use href="#i-avion"/></svg><span data-t="modo.corto.air"></span></button>
+            <button type="button" data-modo="road" aria-pressed="false"><svg class="icono"><use href="#i-camion"/></svg><span data-t="modo.corto.road"></span></button>
+          </div>
+          <label for="rapida-origen" data-t="campo.origen"></label>
+          <input class="campo" id="rapida-origen" data-t-ph="campo.ciudadPais" autocomplete="off" />
+          <label for="rapida-destino" data-t="campo.destino"></label>
+          <input class="campo" id="rapida-destino" data-t-ph="campo.ciudadPais" autocomplete="off" />
+          <button class="boton boton--naranja" type="submit"><span data-t="rapida.continuar"></span> <svg class="icono"><use href="#i-flecha"/></svg></button>
+          <p class="rapida-pie" data-t="rapida.pie"></p>
+        </form>
+      </div>
+    </section>
+
+    <div class="confianza">
+      <div class="caja">
+        <div><svg class="icono"><use href="#i-reloj"/></svg><span data-t="confianza.48"></span></div>
+        <div><svg class="icono"><use href="#i-ruta"/></svg><span data-t="confianza.modos"></span></div>
+        <div><svg class="icono"><use href="#i-aduana"/></svg><span data-t="confianza.aduana"></span></div>
+        <div><svg class="icono"><use href="#i-grua"/></svg><span data-t="confianza.pesada"></span></div>
+      </div>
+    </div>
+
+    <section class="seccion" id="servicios">
+      <div class="caja">
+        <div class="seccion-cabecera">
+          <div class="antetitulo" data-t="servicios.antetitulo"></div>
+          <h2 data-t="servicios.titulo"></h2>
+          <p data-t="servicios.texto"></p>
+        </div>
+        <div class="servicios">
+          <article class="servicio">
+            <a class="servicio-enlace" href="servicio.html?s=maritimo"><div class="servicio-icono"><svg class="icono"><use href="#i-barco"/></svg></div><h3 data-svc-titulo="maritimo"></h3></a>
+            <p data-svc-corto="maritimo"></p>
+            <div class="servicio-acciones"><a href="servicio.html?s=maritimo" data-t="servicio.detalles"></a><a href="#cotizar" data-cotizar="ocean" data-t="servicio.cotizarCorto"></a></div>
+          </article>
+          <article class="servicio">
+            <a class="servicio-enlace" href="servicio.html?s=aereo"><div class="servicio-icono"><svg class="icono"><use href="#i-avion"/></svg></div><h3 data-svc-titulo="aereo"></h3></a>
+            <p data-svc-corto="aereo"></p>
+            <div class="servicio-acciones"><a href="servicio.html?s=aereo" data-t="servicio.detalles"></a><a href="#cotizar" data-cotizar="air" data-t="servicio.cotizarCorto"></a></div>
+          </article>
+          <article class="servicio">
+            <a class="servicio-enlace" href="servicio.html?s=terrestre"><div class="servicio-icono"><svg class="icono"><use href="#i-camion"/></svg></div><h3 data-svc-titulo="terrestre"></h3></a>
+            <p data-svc-corto="terrestre"></p>
+            <div class="servicio-acciones"><a href="servicio.html?s=terrestre" data-t="servicio.detalles"></a><a href="#cotizar" data-cotizar="road" data-t="servicio.cotizarCorto"></a></div>
+          </article>
+          <article class="servicio">
+            <a class="servicio-enlace" href="servicio.html?s=almacenaje"><div class="servicio-icono"><svg class="icono"><use href="#i-almacen"/></svg></div><h3 data-svc-titulo="almacenaje"></h3></a>
+            <p data-svc-corto="almacenaje"></p>
+            <div class="servicio-acciones"><a href="servicio.html?s=almacenaje" data-t="servicio.detalles"></a><a href="#cotizar" data-cotizar="warehouse" data-t="servicio.cotizarCorto"></a></div>
+          </article>
+          <article class="servicio">
+            <a class="servicio-enlace" href="servicio.html?s=aduana"><div class="servicio-icono"><svg class="icono"><use href="#i-aduana"/></svg></div><h3 data-svc-titulo="aduana"></h3></a>
+            <p data-svc-corto="aduana"></p>
+            <div class="servicio-acciones"><a href="servicio.html?s=aduana" data-t="servicio.detalles"></a><a href="#cotizar" data-cotizar="customs" data-t="servicio.cotizarCorto"></a></div>
+          </article>
+          <article class="servicio">
+            <a class="servicio-enlace" href="servicio.html?s=pesada"><div class="servicio-icono"><svg class="icono"><use href="#i-grua"/></svg></div><h3 data-svc-titulo="pesada"></h3></a>
+            <p data-svc-corto="pesada"></p>
+            <div class="servicio-acciones"><a href="servicio.html?s=pesada" data-t="servicio.detalles"></a><a href="#cotizar" data-cotizar="heavy" data-t="servicio.cotizarCorto"></a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--arena" id="industrias">
+      <div class="caja">
+        <div class="seccion-cabecera">
+          <div class="antetitulo" data-t="industrias.antetitulo"></div>
+          <h2 data-t="industrias.titulo"></h2>
+          <p data-t="industrias.texto"></p>
+        </div>
+        <div class="industrias">
+          <div class="industria"><svg class="icono"><use href="#i-chip"/></svg><span data-t="industria.tecnologia"></span></div>
+          <div class="industria"><svg class="icono"><use href="#i-salud"/></svg><span data-t="industria.farma"></span></div>
+          <div class="industria"><svg class="icono"><use href="#i-engranaje"/></svg><span data-t="industria.automotriz"></span></div>
+          <div class="industria"><svg class="icono"><use href="#i-bolsa"/></svg><span data-t="industria.retail"></span></div>
+          <div class="industria"><svg class="icono"><use href="#i-fabrica"/></svg><span data-t="industria.pesada"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="nosotros">
+      <div class="caja puente">
+        <img src="img/buque-atardecer.webp" alt="" loading="lazy" />
+        <div>
+          <div class="seccion-cabecera">
+            <div class="antetitulo" data-t="nosotros.antetitulo"></div>
+            <h2 data-t="nosotros.titulo"></h2>
+            <p data-t="nosotros.texto"></p>
+          </div>
+          <ul class="puntos">
+            <li><svg class="icono"><use href="#i-check"/></svg><span data-t="nosotros.p1"></span></li>
+            <li><svg class="icono"><use href="#i-check"/></svg><span data-t="nosotros.p2"></span></li>
+            <li><svg class="icono"><use href="#i-check"/></svg><span data-t="nosotros.p3"></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--arena" id="proceso">
+      <div class="caja">
+        <div class="seccion-cabecera">
+          <div class="antetitulo" data-t="proceso.antetitulo"></div>
+          <h2 data-t="proceso.titulo"></h2>
+        </div>
+        <div class="pasos">
+          <div class="paso"><div class="paso-numero">01</div><h3 data-t="proceso.1.titulo"></h3><p data-t="proceso.1.texto"></p></div>
+          <div class="paso"><div class="paso-numero">02</div><h3 data-t="proceso.2.titulo"></h3><p data-t="proceso.2.texto"></p></div>
+          <div class="paso"><div class="paso-numero">03</div><h3 data-t="proceso.3.titulo"></h3><p data-t="proceso.3.texto"></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="cotizar">
+      <div class="caja">
+        <div class="seccion-cabecera">
+          <div class="antetitulo" data-t="form.antetitulo"></div>
+          <h2 data-t="form.titulo"></h2>
+          <p data-t="form.texto"></p>
+        </div>
+        <div class="cotizar">
+          <div class="formulario">
+            <ol class="progreso" aria-hidden="true">
+              <li class="hecho" data-t="form.paso1"></li>
+              <li data-t="form.paso2"></li>
+              <li data-t="form.paso3"></li>
+            </ol>
+
+            <form id="cotizador" novalidate>
+              <fieldset class="etapa" data-etapa="1">
+                <h3 data-t="form.ruta.titulo"></h3>
+                <div class="grupo">
+                  <span class="etiqueta-grupo" data-t="campo.modalidad"></span>
+                  <div class="opciones" id="modos">
+                    <label class="opcion"><input type="radio" name="modo" value="ocean" /><span><svg class="icono"><use href="#i-barco"/></svg><span data-t="modo.ocean"></span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="air" /><span><svg class="icono"><use href="#i-avion"/></svg><span data-t="modo.air"></span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="road" /><span><svg class="icono"><use href="#i-camion"/></svg><span data-t="modo.road"></span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="warehouse" /><span><svg class="icono"><use href="#i-almacen"/></svg><span data-t="modo.warehouse"></span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="heavy" /><span><svg class="icono"><use href="#i-grua"/></svg><span data-t="modo.heavy"></span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="customs" /><span><svg class="icono"><use href="#i-aduana"/></svg><span data-t="modo.customs"></span></span></label>
+                  </div>
+                  <p class="mensaje-error" data-error="modo" hidden data-t="error.modo"></p>
+                </div>
+                <div class="fila-2">
+                  <div class="grupo">
+                    <label for="origen" data-t="campo.origen"></label>
+                    <input class="campo" id="origen" name="origen" required data-t-ph="campo.ciudadPais" />
+                    <p class="mensaje-error" data-error="origen" hidden data-t="error.requerido"></p>
+                  </div>
+                  <div class="grupo">
+                    <label for="destino" data-t="campo.destino"></label>
+                    <input class="campo" id="destino" name="destino" required data-t-ph="campo.ciudadPais" />
+                    <p class="mensaje-error" data-error="destino" hidden data-t="error.requerido"></p>
+                  </div>
+                </div>
+                <div class="grupo" style="max-width: 320px;">
+                  <label for="fecha" data-t="campo.fecha"></label>
+                  <input class="campo" id="fecha" name="fecha" type="date" />
+                </div>
+              </fieldset>
+
+              <fieldset class="etapa" data-etapa="2" hidden>
+                <h3 data-t="form.carga.titulo"></h3>
+                <div class="grupo">
+                  <label for="mercancia" data-t="campo.mercancia"></label>
+                  <input class="campo" id="mercancia" name="mercancia" required data-t-ph="campo.mercanciaEj" />
+                  <p class="mensaje-error" data-error="mercancia" hidden data-t="error.requerido"></p>
+                </div>
+                <div class="grupo" id="grupo-tipo-carga" hidden>
+                  <span class="etiqueta-grupo" data-t="campo.tipoCarga"></span>
+                  <div class="chips">
+                    <label class="opcion"><input type="radio" name="carga" value="fcl" checked /><span data-t="carga.fcl"></span></label>
+                    <label class="opcion"><input type="radio" name="carga" value="lcl" /><span data-t="carga.lcl"></span></label>
+                  </div>
+                </div>
+                <div class="grupo">
+                  <span class="etiqueta-grupo" data-t="campo.tipo"></span>
+                  <div class="chips">
+                    <label class="opcion"><input type="radio" name="tipo" value="general" checked /><span data-t="tipo.general"></span></label>
+                    <label class="opcion"><input type="radio" name="tipo" value="dg" /><span data-t="tipo.dg"></span></label>
+                    <label class="opcion"><input type="radio" name="tipo" value="temp" /><span data-t="tipo.temp"></span></label>
+                    <label class="opcion"><input type="radio" name="tipo" value="oversized" /><span data-t="tipo.oversized"></span></label>
+                  </div>
+                </div>
+                <div class="fila-2" id="grupo-fcl" hidden>
+                  <div class="grupo">
+                    <label for="contenedor" data-t="campo.contenedor"></label>
+                    <select class="campo" id="contenedor" name="contenedor">
+                      <option value="20'">20' Standard</option>
+                      <option value="40'">40' Standard</option>
+                      <option value="40' HC">40' High Cube</option>
+                      <option value="40' Reefer">40' Reefer</option>
+                    </select>
+                  </div>
+                  <div class="grupo">
+                    <label for="cantidad" data-t="campo.cantidad"></label>
+                    <input class="campo" id="cantidad" name="cantidad" type="number" min="1" value="1" />
+                  </div>
+                </div>
+                <div class="fila-3" id="grupo-bultos">
+                  <div class="grupo">
+                    <label for="bultos" data-t="campo.bultos"></label>
+                    <input class="campo" id="bultos" name="bultos" type="number" min="1" />
+                  </div>
+                  <div class="grupo">
+                    <label for="peso" data-t="campo.peso"></label>
+                    <input class="campo" id="peso" name="peso" type="number" min="0" />
+                  </div>
+                  <div class="grupo">
+                    <label for="volumen" data-t="campo.volumen"></label>
+                    <input class="campo" id="volumen" name="volumen" data-t-ph="campo.volumenEj" />
+                  </div>
+                </div>
+                <div class="fila-2">
+                  <div class="grupo">
+                    <label for="incoterm">Incoterm</label>
+                    <select class="campo" id="incoterm" name="incoterm">
+                      <option value="EXW">EXW</option>
+                      <option value="FOB" selected>FOB</option>
+                      <option value="CIF">CIF</option>
+                      <option value="DAP">DAP</option>
+                      <option value="DDP">DDP</option>
+                      <option value="?" data-t="campo.noSeguro"></option>
+                    </select>
+                  </div>
+                  <div class="grupo" style="display:flex;align-items:flex-end;">
+                    <label class="check"><input type="checkbox" name="aduana" /><span data-t="campo.aduana"></span></label>
+                  </div>
+                </div>
+                <div class="grupo">
+                  <label for="notas" data-t="campo.notas"></label>
+                  <textarea class="campo" id="notas" name="notas" rows="3" data-t-ph="campo.notasEj"></textarea>
+                </div>
+              </fieldset>
+
+              <fieldset class="etapa" data-etapa="3" hidden>
+                <h3 data-t="form.contacto.titulo"></h3>
+                <div class="fila-2">
+                  <div class="grupo">
+                    <label for="nombre" data-t="campo.nombre"></label>
+                    <input class="campo" id="nombre" name="nombre" required autocomplete="name" />
+                    <p class="mensaje-error" data-error="nombre" hidden data-t="error.requerido"></p>
+                  </div>
+                  <div class="grupo">
+                    <label for="empresa" data-t="campo.empresa"></label>
+                    <input class="campo" id="empresa" name="empresa" autocomplete="organization" />
+                  </div>
+                </div>
+                <div class="fila-2">
+                  <div class="grupo">
+                    <label for="correo" data-t="campo.correo"></label>
+                    <input class="campo" id="correo" name="correo" type="email" required autocomplete="email" />
+                    <p class="mensaje-error" data-error="correo" hidden data-t="error.correo"></p>
+                  </div>
+                  <div class="grupo">
+                    <label for="telefono" data-t="campo.telefono"></label>
+                    <input class="campo" id="telefono" name="telefono" type="tel" autocomplete="tel" />
+                  </div>
+                </div>
+                <div class="grupo">
+                  <span class="etiqueta-grupo" data-t="campo.preferencia"></span>
+                  <div class="chips">
+                    <label class="opcion"><input type="radio" name="preferencia" value="email" checked /><span data-t="pref.email"></span></label>
+                    <label class="opcion"><input type="radio" name="preferencia" value="whatsapp" /><span>WhatsApp</span></label>
+                    <label class="opcion"><input type="radio" name="preferencia" value="llamada" /><span data-t="pref.llamada"></span></label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="acciones">
+                <button class="boton boton--gris" type="button" id="atras" hidden data-t="form.atras"></button>
+                <span></span>
+                <button class="boton boton--naranja" type="submit" id="siguiente"><span data-t="form.siguiente"></span> <svg class="icono"><use href="#i-flecha"/></svg></button>
+              </div>
+            </form>
+
+            <div class="exito" id="exito" hidden>
+              <div class="exito-icono"><svg class="icono"><use href="#i-check"/></svg></div>
+              <h3 id="exito-titulo"></h3>
+              <p data-t="exito.texto"></p>
+              <div class="correo-demo">
+                <strong data-t="exito.demo"></strong>
+                <pre id="resumen"></pre>
+              </div>
+              <button class="boton boton--navy" type="button" id="otra" data-t="exito.otra"></button>
+            </div>
+          </div>
+
+          <aside class="conversar">
+            <h3 data-t="conversar.titulo"></h3>
+            <p data-t="conversar.texto"></p>
+            <button class="boton boton--whatsapp abrir-whatsapp" type="button"><svg class="icono"><use href="#i-whatsapp"/></svg> WhatsApp</button>
+            <a class="boton boton--transparente" href="tel:+17865197711"><svg class="icono"><use href="#i-tel"/></svg> +1 (786) 519-7711</a>
+            <a class="boton boton--transparente" href="mailto:operations@sbc-log.com"><svg class="icono"><use href="#i-correo"/></svg> operations@sbc-log.com</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="iconos.js"></script>
+  <script src="textos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

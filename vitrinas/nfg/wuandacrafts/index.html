@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>WuandaCrafts — Custom gifts by NFG</title>
+  <meta name="description" content="WuandaCrafts: custom apparel, gifts, merch and decals, made one by one in Miami and Cartagena." />
+  <meta name="theme-color" content="#000000" />
+  <!-- La «miniatura» de WuandaCrafts (Juan, 10 nov 2026): la W de cuatro piezas, no la de NFG (herramientas/construir-favicon-wc.mjs). -->
+  <link rel="icon" href="../img/marcas/wuandacrafts-favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../img/marcas/wuandacrafts-favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../img/marcas/wuandacrafts-apple-touch-icon.png" />
+  <!-- Vista previa: og:image apunta al sitio de revisión; al publicar en negrofarto.com se cambia a ese dominio. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NFG" />
+  <meta property="og:title" content="WuandaCrafts — Custom gifts by NFG" />
+  <meta property="og:description" content="WuandaCrafts: custom apparel, gifts, merch and decals, made one by one in Miami and Cartagena." />
+  <meta property="og:image" content="https://niconania.github.io/negrofarto-web/prototipo/img/og/og-wuandacrafts.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&amp;family=Pacifico&amp;family=Fredoka:wght@500;600&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../recursos/estilos.css" />
+</head>
+<body class="marca-wc" data-pagina="wuanda" data-base="../">
+  <main>
+    <!-- Vista de inicio: héroe, cómo funciona, catálogo y piezas recientes. La ficha de una pieza (#pieza/<id>) la reemplaza. -->
+    <div id="vista-inicio">
+      <section class="wc-hero">
+        <div class="caja wc-hero-grilla">
+          <div>
+            <div class="wc-marca">
+              <img src="../img/marcas/wuandacrafts-logo.svg" alt="WuandaCrafts" width="191" height="168" />
+              <span data-t="wc.firma"></span>
+            </div>
+            <h1 data-t-html="wc.h1"></h1>
+            <p data-t="wc.texto"></p>
+            <ul class="chips-texto">
+              <li>Miami · Cartagena</li>
+              <li data-t="wc.chip2"></li>
+            </ul>
+            <div class="acciones">
+              <a class="boton boton--acento" href="#catalogo" data-t="wc.cta"></a>
+              <a class="boton boton--borde" href="#piezas" data-t="wc.cta2"></a>
+            </div>
+          </div>
+          <!-- Cortina de fotos (recursos/tendedero.js): las piezas marcadas con "portada" en datos.js. -->
+          <div id="cortina-heroe"></div>
+        </div>
+      </section>
+
+      <section class="seccion wc-uno">
+        <div class="caja">
+          <p class="ceja" data-t="wc.uno_ceja"></p>
+          <h2 data-t="wc.uno_titulo"></h2>
+          <div class="uno-grilla">
+            <div class="uno"><span class="uno-num">01</span><h3 data-t="wc.u1t"></h3><p data-t="wc.u1x"></p></div>
+            <div class="uno"><span class="uno-num">02</span><h3 data-t="wc.u2t"></h3><p data-t="wc.u2x"></p></div>
+            <div class="uno"><span class="uno-num">03</span><h3 data-t="wc.u3t"></h3><p data-t="wc.u3x"></p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- El catálogo (recursos/app.js, iniciarWuanda; piezas en datos.js → wc.catalogo). -->
+      <section class="seccion wc-catalogo" id="catalogo">
+        <div class="caja">
+          <div class="cabeza-seccion">
+            <p class="ceja" data-t="wc.cat_ceja"></p>
+            <h2 data-t="wc.cat_titulo"></h2>
+            <p class="bajada" data-t="wc.cat_texto"></p>
+            <ul class="chips-texto">
+              <li data-t="wc.chip1"></li>
+              <li data-t="wc.chip2"></li>
+            </ul>
+          </div>
+          <div class="regalos">
+            <svg class="icono" aria-hidden="true"><use href="#i-regalo"/></svg>
+            <p><strong data-t="wc.regalos_t"></strong> <span data-t="wc.regalos_x"></span></p>
+            <button class="boton boton--crema boton--chico" type="button" id="regalos-cta" data-t="wc.regalos_cta"></button>
+          </div>
+          <div class="cat-tabs" id="wc-tabs" role="group" data-t-aria="wc.categorias"></div>
+          <div class="sub-filtros" id="wc-sub" hidden></div>
+          <div class="cat-grilla" id="wc-grilla"></div>
+        </div>
+      </section>
+
+      <section class="seccion seccion--suave" id="piezas">
+        <div class="caja">
+          <div class="cabeza-seccion cabeza-seccion--fila">
+            <div>
+              <p class="ceja" data-t="wc.piezas_ceja"></p>
+              <h2 data-t="wc.piezas_titulo"></h2>
+            </div>
+            <a class="boton boton--borde" href="https://www.instagram.com/wuandacrafts/" target="_blank" rel="noopener"><svg class="icono" aria-hidden="true"><use href="#i-instagram"/></svg>@wuandacrafts</a>
+          </div>
+        </div>
+        <!-- Tendedero de fotos a todo el ancho (recursos/tendedero.js); su barra se alinea con la caja. -->
+        <div id="tendedero-piezas"></div>
+      </section>
+    </div>
+
+    <!-- Vista de una pieza: se pinta en app.js al abrir #pieza/<id>. -->
+    <div id="vista-pieza" hidden></div>
+  </main>
+
+  <!-- Barra fija del celular con el pedido (solo cuando hay piezas) y el cajón «Tu pedido». -->
+  <div class="barra-pedido" id="barra-pedido" hidden></div>
+  <dialog class="cajon" id="cajon-pedido"></dialog>
+
+  <script src="../recursos/iconos.js"></script>
+  <script src="../recursos/textos.js"></script>
+  <script src="../recursos/datos.js"></script>
+  <script src="../recursos/tendedero.js"></script>
+  <script src="../recursos/app.js"></script>
+</body>
+</html>

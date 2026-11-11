@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>La Fartedá — Merch by NFG</title>
+  <meta name="description" content="La Fartedá: Colombian Caribbean clothing. T-shirts and tote bags shipped to the USA and Colombia." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="../img/marcas/lafarteda-favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../img/marcas/lafarteda-favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="../img/marcas/lafarteda-apple-touch-icon.png" />
+  <!-- Vista previa: og:image apunta al sitio de revisión; al publicar en negrofarto.com se cambia a ese dominio. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NFG" />
+  <meta property="og:title" content="La Fartedá — Merch by NFG" />
+  <meta property="og:description" content="La Fartedá: Colombian Caribbean clothing. T-shirts and tote bags shipped to the USA and Colombia." />
+  <meta property="og:image" content="https://niconania.github.io/negrofarto-web/prototipo/img/og/og-lafarteda.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../recursos/estilos.css" />
+</head>
+<body class="marca-lf" data-pagina="merch" data-base="../">
+  <main>
+    <section class="lf-hero">
+      <div class="caja lf-hero-grilla">
+        <div>
+          <img class="lf-logo" src="../img/marcas/lafarteda-logo-by.svg" alt="La Fartedá by NegroFarto" width="169" height="96" />
+          <h1 data-t="lf.h1"></h1>
+          <p data-t="lf.texto"></p>
+          <ul class="chips-texto">
+            <li data-t="lf.chip1"></li>
+            <li>Cartagena → Miami</li>
+            <li data-t="lf.chip3"></li>
+          </ul>
+          <a class="boton boton--acento" href="#coleccion" data-t="lf.cta"></a>
+        </div>
+        <div class="lf-fotos">
+          <img src="../img/lafarteda/estilo-04.webp" alt="" />
+          <img src="../img/lafarteda/estilo-07.webp" alt="" />
+          <img src="../img/lafarteda/estilo-09.webp" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion lf-coleccion" id="coleccion">
+      <div class="caja">
+        <div class="lf-barra">
+          <div class="chips chips--claro" id="lf-filtros" role="group"></div>
+          <div class="pais">
+            <svg class="icono" aria-hidden="true"><use href="#i-pais"/></svg>
+            <span data-t="lf.pais"></span>
+            <div class="pais-botones" role="group">
+              <button type="button" data-pais="usa" aria-pressed="true">USA · USD</button>
+              <button type="button" data-pais="col" aria-pressed="false">Colombia · COP</button>
+            </div>
+          </div>
+        </div>
+        <p class="lf-nota-envio" id="lf-nota-envio"></p>
+        <div class="productos" id="lista-productos"></div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--suave">
+      <div class="caja">
+        <div class="cabeza-seccion">
+          <p class="ceja" data-t="lf.como_ceja"></p>
+          <h2 data-t="lf.como"></h2>
+        </div>
+        <ol class="pasos-lf">
+          <li><svg class="icono" aria-hidden="true"><use href="#i-camiseta"/></svg><h3 data-t="lf.p1t"></h3><p data-t="lf.p1x"></p></li>
+          <li><svg class="icono" aria-hidden="true"><use href="#i-pais"/></svg><h3 data-t="lf.p2t"></h3><p data-t="lf.p2x"></p></li>
+          <li><svg class="icono" aria-hidden="true"><use href="#i-whatsapp"/></svg><h3 data-t="lf.p3t"></h3><p data-t="lf.p3x"></p></li>
+          <li><svg class="icono" aria-hidden="true"><use href="#i-envio"/></svg><h3 data-t="lf.p4t"></h3><p data-t="lf.p4x"></p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="caja">
+        <div class="cabeza-seccion cabeza-seccion--fila">
+          <div>
+            <p class="ceja">@lafarteda</p>
+            <h2 data-t="lf.look"></h2>
+          </div>
+          <a class="boton boton--borde" href="https://www.instagram.com/lafarteda/" target="_blank" rel="noopener"><svg class="icono" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
+        </div>
+        <div class="look">
+          <img src="../img/lafarteda/estilo-01.webp" alt="" loading="lazy" />
+          <img src="../img/lafarteda/estilo-02.webp" alt="" loading="lazy" />
+          <img src="../img/lafarteda/estilo-05.webp" alt="" loading="lazy" />
+          <img src="../img/lafarteda/estilo-08.webp" alt="" loading="lazy" />
+        </div>
+      </div>
+    </section>
+  </main>
+  <dialog class="modal modal--ancho" id="modal-producto"></dialog>
+  <dialog class="cajon" id="cajon-carrito"></dialog>
+
+  <script src="../recursos/iconos.js"></script>
+  <script src="../recursos/textos.js"></script>
+  <script src="../recursos/datos.js"></script>
+  <script src="../recursos/app.js"></script>
+</body>
+</html>
