@@ -225,7 +225,19 @@ main { max-width: 1200px; margin: 0 auto; padding: 34px clamp(12px, 3vw, 28px) 7
 .ventana-barra i:nth-child(2) { background: var(--amarillo); }
 .ventana-barra i:nth-child(3) { background: var(--verde); }
 .ventana-barra span { margin-left: 10px; }
-.ventana iframe { display: block; width: 100%; height: min(680px, 76vh); border: 0; border-radius: 0 0 11px 11px; background: #F4F5F7; }
+.ventana-escena { border-radius: 0 0 11px 11px; overflow: hidden; background: #F4F5F7; }
+.ventana iframe { display: block; width: 100%; height: min(680px, 76vh); border: 0; background: #F4F5F7; }
+.ventana-toques { margin-left: auto; font: 700 11px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--tinta); background: var(--papel); border: 1.2px solid var(--tinta); border-radius: 999px; padding: 6px 10px; white-space: nowrap; }
+.ventana-toques.listo { background: var(--amarillo); }
+.ventana-reiniciar { font: 700 11px/1 var(--mono); text-transform: uppercase; background: none; border: 0; text-decoration: underline; color: var(--gris); padding: 4px; }
+/* Modo celular: la misma tienda en un teléfono (en pantallas chicas ya se ve así). */
+.ventana.modo-cel .ventana-escena { display: flex; justify-content: center; padding: 22px 0; background: radial-gradient(ellipse at 50% 0%, #2B2F38 0%, #1A1C21 75%); }
+.ventana.modo-cel iframe { width: 402px; height: min(760px, 78vh); border: 12px solid #0B0C0F; border-radius: 46px; box-shadow: 0 0 0 2px #3A3E47, 0 24px 60px rgba(0,0,0,.5); }
+.pildora-boton--interruptor { display: inline-flex; align-items: center; gap: 8px; }
+.pildora-boton--interruptor i { width: 26px; height: 15px; border-radius: 999px; background: #CFCDC6; position: relative; transition: background .15s; }
+.pildora-boton--interruptor i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px; border-radius: 50%; background: #fff; transition: left .15s; }
+.pildora-boton--interruptor.activa i { background: var(--azul); }
+.pildora-boton--interruptor.activa i::after { left: 13px; }
 .cinta-pegada { position: absolute; z-index: 3; width: 110px; height: 30px; background: rgba(166, 222, 200, .72); border-left: 2px dashed rgba(255,255,255,.6); border-right: 2px dashed rgba(255,255,255,.6); }
 .cinta-pegada--izq { left: -34px; top: -10px; transform: rotate(-32deg); }
 .cinta-pegada--der { right: -34px; top: -10px; transform: rotate(32deg); background: rgba(247, 201, 72, .7); }
@@ -361,6 +373,13 @@ main { max-width: 1200px; margin: 0 auto; padding: 34px clamp(12px, 3vw, 28px) 7
   .nota-abajo { margin-left: 0; }
   .ventana { box-shadow: 4px 4px 0 var(--tinta); }
   .ventana iframe { height: 78vh; }
+  .vistas [data-modo] { display: none; }
+  .ventana-barra i, .cinta-pegada--der { display: none; }
+  .ventana-toques { margin-left: 0; }
+  .ventana-reiniciar { margin-left: auto; }
+  .ventana.modo-cel .ventana-escena { padding: 0; background: none; }
+  .ventana.modo-cel iframe { width: 100%; height: 78vh; border: 0; border-radius: 0; box-shadow: none; }
+  .ventana-barra > span:first-of-type { display: none; }
   .cinta-pegada { width: 80px; height: 24px; }
   .cinta-pegada--izq { left: -4px; } .cinta-pegada--der { right: -4px; }
   .sticker-toques { display: none; }
@@ -381,7 +400,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 34px clamp(12px, 3vw, 28px) 7
   @page { size: 1440px 900px; margin: 0; }
   html { scroll-behavior: auto; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body { background: var(--fondo); }
-  .barra, .visor, .nota-abajo, .vistas, .sticker-toques { display: none !important; }
+  .barra, .visor, .nota-abajo, .vistas, .sticker-toques, .ventana-toques, .ventana-reiniciar { display: none !important; }
   main { max-width: none; padding: 0; }
   .hoja { margin: 0; height: 900px; overflow: hidden; break-after: page; border-radius: 0; border: 0; border-top: 14px solid var(--color); box-shadow: none; padding: 70px 80px 50px; }
   .hoja--portada { border-top: 0; padding-top: 60px; }
@@ -446,21 +465,29 @@ main { max-width: 1200px; margin: 0 auto; padding: 34px clamp(12px, 3vw, 28px) 7
           <h2>Así se compraría en DLR.</h2>
           <p>Un wireframe navegable que armé para esta propuesta: busquen, filtren, agreguen y paguen. No envía nada.</p>
         </div>
-        <div class="vistas" data-vistas="marco-boceto">
-          <button type="button" class="pildora-boton activa" data-url="vitrinas/boceto/index.html">Computadora</button><button type="button" class="pildora-boton" data-url="vitrinas/boceto/index.html?disp&#x3D;cel">Celular</button><button type="button" class="pildora-boton" data-url="vitrinas/boceto/index.html?notas&#x3D;1">Notas para desarrollo</button>
+        <div class="vistas" id="vistasBoceto">
+          <button type="button" class="pildora-boton activa" data-modo="pc">Computadora</button>
+          <button type="button" class="pildora-boton" data-modo="cel">Celular</button>
+          <button type="button" class="pildora-boton pildora-boton--interruptor" data-notas aria-pressed="false"><i></i>Notas para desarrollo</button>
         </div>
-        <div class="ventana">
+        <!-- Un solo marco: la tienda se incrusta directo para que se deslice con el dedo y con la rueda en cualquier navegador. -->
+        <div class="ventana" id="ventanaBoceto">
           <span class="cinta-pegada cinta-pegada--izq"></span>
           <span class="cinta-pegada cinta-pegada--der"></span>
-          <div class="ventana-barra"><i></i><i></i><i></i><span>dlr.com.ve · boceto</span></div>
-          <iframe id="marco-boceto" src="vitrinas/boceto/index.html" title="Boceto navegable de la tienda DLR"></iframe>
+          <div class="ventana-barra"><i></i><i></i><i></i><span>dlr.com.ve · boceto</span>
+            <span class="ventana-toques" id="toquesBoceto">toques hasta el pedido: <b>0</b></span>
+            <button type="button" class="ventana-reiniciar" id="reiniciarBoceto">reiniciar</button>
+          </div>
+          <div class="ventana-escena">
+            <iframe id="marco-boceto" src="vitrinas/boceto/tienda.html" title="Boceto navegable de la tienda DLR"></iframe>
+          </div>
           <img class="solo-impresion" src="img/boceto-pc.jpg" alt="Boceto de la tienda DLR">
           <div class="sticker-toques" title="toques de la portada al pedido, contados"><b>5</b><span>toques</span></div>
         </div>
         <div class="ventana-pie">
           <span class="nota-mano">↑ 5 toques de la portada al pedido, contados</span>
           <span class="mono-chico">Productos, precios y textos de ejemplo: la marca final sale de su manual.</span>
-          <a class="enlace-mono" data-abrir-vista="marco-boceto" href="vitrinas/boceto/index.html" target="_blank" rel="noopener">abrir en pestaña nueva ↗</a>
+          <a class="enlace-mono" href="vitrinas/boceto/index.html" target="_blank" rel="noopener">abrir en pantalla completa ↗</a>
         </div>
       </section>
       <section class="hoja hoja--amarillo" id="trabajos">
@@ -650,18 +677,40 @@ main { max-width: 1200px; margin: 0 auto; padding: 34px clamp(12px, 3vw, 28px) 7
 
   <script>
   (function () {
-    /* Vistas del boceto: cada botón cambia el marco. */
-    document.querySelectorAll('[data-vistas]').forEach(function (grupo) {
-      var marco = document.getElementById(grupo.dataset.vistas);
-      var abrir = document.querySelector('[data-abrir-vista="' + grupo.dataset.vistas + '"]');
-      grupo.querySelectorAll('button').forEach(function (b) {
+    /* Boceto: la tienda va en un solo marco (se desliza en cualquier navegador). La presentación
+       cambia entre computadora y celular, prende las notas y lleva el contador de toques. */
+    var tienda = document.getElementById('marco-boceto'), ventana = document.getElementById('ventanaBoceto');
+    if (tienda && ventana) {
+      var notas = false;
+      var hablar = function (m) { m.boceto = 'dlr-marco'; try { tienda.contentWindow.postMessage(m, '*'); } catch (e) { /* aún cargando */ } };
+      document.querySelectorAll('#vistasBoceto [data-modo]').forEach(function (b) {
         b.addEventListener('click', function () {
-          grupo.querySelectorAll('button').forEach(function (x) { x.classList.toggle('activa', x === b); });
-          marco.src = b.dataset.url;
-          if (abrir) abrir.href = b.dataset.url;
+          document.querySelectorAll('#vistasBoceto [data-modo]').forEach(function (x) { x.classList.toggle('activa', x === b); });
+          ventana.classList.toggle('modo-cel', b.dataset.modo === 'cel');
         });
       });
-    });
+      var botonNotas = document.querySelector('#vistasBoceto [data-notas]');
+      botonNotas.addEventListener('click', function () {
+        notas = !notas;
+        botonNotas.classList.toggle('activa', notas);
+        botonNotas.setAttribute('aria-pressed', notas);
+        hablar({ notas: notas });
+      });
+      tienda.addEventListener('load', function () { if (notas) hablar({ notas: true }); });
+      var toques = document.getElementById('toquesBoceto');
+      window.addEventListener('message', function (e) {
+        var d = e.data || {};
+        if (d.boceto !== 'dlr' || e.source !== tienda.contentWindow) return;
+        var listo = d.tipo === 'pedido';
+        toques.classList.toggle('listo', listo);
+        toques.innerHTML = (listo ? 'pedido listo en ' : 'toques hasta el pedido: ') + '<b>' + d.n + '</b>';
+      });
+      document.getElementById('reiniciarBoceto').addEventListener('click', function () {
+        hablar({ reiniciar: true });
+        toques.classList.remove('listo');
+        toques.innerHTML = 'toques hasta el pedido: <b>0</b>';
+      });
+    }
 
     /* Trabajos: se abren en un visor dentro de la página (los que no se dejan incrustar, en otra pestaña). */
     var visor = document.getElementById('visor'), marco = document.getElementById('visorMarco');
