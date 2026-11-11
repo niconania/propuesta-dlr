@@ -6,6 +6,9 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Boceto navegable · DLR Tecnología y Hogar</title>
 <link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
@@ -16,16 +19,17 @@
   .marca b { font-size: 14px; white-space: nowrap; }
   .marca span { font-size: 12px; color: #9AA0AA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .seg { display: flex; background: #23262D; border-radius: 999px; padding: 3px; }
-  .seg button { background: none; color: #B8BDC6; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; }
+  .seg button { background: none; color: #B8BDC6; font: 700 11px/1 "Space Mono", monospace; letter-spacing: .05em; text-transform: uppercase; padding: 8px 13px; border-radius: 999px; white-space: nowrap; }
   .seg button.activo { background: #F3F4F6; color: #111317; }
-  .interruptor { display: flex; align-items: center; gap: 8px; background: #23262D; color: #DDE1E7; font-size: 13px; font-weight: 600; padding: 7px 14px 7px 8px; border-radius: 999px; }
+  .interruptor { display: flex; align-items: center; gap: 8px; background: #23262D; color: #DDE1E7; font: 700 11px/1 "Space Mono", monospace; letter-spacing: .05em; text-transform: uppercase; padding: 7px 13px 7px 8px; border-radius: 999px; white-space: nowrap; }
   .interruptor i { width: 30px; height: 18px; border-radius: 999px; background: #3A3E47; position: relative; transition: background .15s; }
   .interruptor i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 999px; background: #fff; transition: left .15s; }
-  .interruptor.on i { background: #1F5EFF; }
+  .interruptor.on i { background: #2B44FF; }
   .interruptor.on i::after { left: 14px; }
-  .toques { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #B8BDC6; background: #23262D; padding: 7px 12px; border-radius: 999px; white-space: nowrap; }
+  .toques { display: flex; align-items: center; gap: 8px; font: 700 11px/1 "Space Mono", monospace; letter-spacing: .05em; text-transform: uppercase; color: #B8BDC6; background: #23262D; padding: 7px 12px; border-radius: 999px; white-space: nowrap; }
   .toques b { color: #fff; font-size: 15px; min-width: 18px; text-align: center; }
-  .toques.listo { background: #173A27; color: #9BE3B8; }
+  .toques.listo { background: #F7C948; color: #151515; }
+  .toques.listo b { color: #151515; }
   .reiniciar { background: none; color: #9AA0AA; font-size: 13px; text-decoration: underline; padding: 4px; }
   .escena { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 0%, #2B2F38 0%, #1A1C21 70%); overflow: hidden; }
   .escena iframe { border: 0; width: 100%; height: 100%; background: #F4F5F7; display: block; }
@@ -37,7 +41,7 @@
   .escena.celular .telefono iframe { padding-top: 0; }
   .leyenda { position: absolute; left: 18px; bottom: 16px; max-width: 280px; font-size: 12.5px; line-height: 1.45; color: #9AA0AA; display: none; }
   .escena.celular .leyenda { display: block; }
-  .leyenda b { color: #E5E7EB; display: block; margin-bottom: 4px; font-size: 13px; }
+  .leyenda b { color: #F7C948; display: block; margin-bottom: 4px; font: 700 26px/1.1 "Caveat", cursive; }
   @media (max-width: 760px) {
     .barra { flex-wrap: wrap; gap: 8px; padding: 8px 10px; }
     .marca { flex-basis: 100%; }
